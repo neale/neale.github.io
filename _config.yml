@@ -1,13 +1,13 @@
 # Site settings
-title: Metaphor
-smalltalk: "A simple Blog"
-description: > # My blog Powred by jekyll
+title: Deep Frustration
+smalltalk: "a discordant blog"
+description: My journey from nothing to something in all things learning
 baseurl: "" # the subpath of your site, e.g. /blog/
 paginate: 5
-url: "" # the base hostname & protocol for your site
+url: "https://github.com"
 twitter_username: 
-github_username:  
-facebook_username: 
+github_username: neale 
+facebook_username: neale.ratzlaff
 portfolio_url: 
 
 # Build settings
