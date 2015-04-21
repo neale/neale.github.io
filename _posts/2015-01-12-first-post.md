@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Neural Nets in Node"
-date:   2015-01-12 23:25:05
+date:   2015-04-20 23:25:05
 categories: First Blog
 image: true
 ---
