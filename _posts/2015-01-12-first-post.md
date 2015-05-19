@@ -20,11 +20,7 @@ Specifically, Synaptic is a javascript library that offeres highly abstracted vi
 
 Here is the MLP that trains an XOR gate: 
 
-<h1>Getting help</h1>
-
-<p>
-Help in Python is always available right in the interpreter. If you want to know how an object works, all you have to do is call <code>help(&lt;object&gt;)</code>! Also useful are <code>dir()</code>, which shows you all the object's methods, and <code>&lt;object&gt;.__doc__</code>, which shows you its documentation string:
-</p>
+<h1>XOR1.js</h1>
 
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">Help</span> <span class="n">on</span> <span class="nb">int</span> <span class="nb">object</span><span class="p">:</span>
