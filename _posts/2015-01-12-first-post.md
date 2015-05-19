@@ -22,6 +22,7 @@ Here is the MLP that trains an XOR gate:
 
 <h1>XOR1.js</h1>
 
+<code>
 <div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
 <span class="n">Help</span> <span class="n">on</span> <span class="nb">int</span> <span class="nb">object</span><span class="p">:</span>
 <span class="p">(</span><span class="n">etc</span> <span class="n">etc</span><span class="p">)</span>
