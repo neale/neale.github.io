@@ -1,0 +1,20 @@
+<h2>Getting help</h2>
+
+<p>
+Help in Python is always available right in the interpreter. If you want to know how an object works, all you have to do is call <code>help(&lt;object&gt;)</code>! Also useful are <code>dir()</code>, which shows you all the object's methods, and <code>&lt;object&gt;.__doc__</code>, which shows you its documentation string:
+</p>
+
+<div class="highlight"><pre><span class="o">&gt;&gt;&gt;</span> <span class="n">help</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">Help</span> <span class="n">on</span> <span class="nb">int</span> <span class="nb">object</span><span class="p">:</span>
+<span class="p">(</span><span class="n">etc</span> <span class="n">etc</span><span class="p">)</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">dir</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="p">[</span><span class="s">&#39;__abs__&#39;</span><span class="p">,</span> <span class="s">&#39;__add__&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span>
+
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">abs</span><span class="o">.</span><span class="n">__doc__</span>
+<span class="s">&#39;abs(number) -&gt; number</span>
+
+<span class="n">Return</span> <span class="n">the</span> <span class="n">absolute</span> <span class="n">value</span> <span class="n">of</span> <span class="n">the</span> <span class="n">argument</span><span class="o">.</span><span class="s">&#39;</span>
+</pre></div>
+</code>
+
