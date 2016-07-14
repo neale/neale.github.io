@@ -1,6 +1,6 @@
 # Site settings
 title: Deep Frustration
-smalltalk: "a discordant blog"
+smalltalk: "Deep Learning, Hardware, and Other Hackings"
 description: My journey from nothing to something in all things learning
 baseurl: "" # the subpath of your site, e.g. /blog/
 paginate: 5
