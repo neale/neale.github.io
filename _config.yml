@@ -9,7 +9,7 @@ twitter_username:
 github_username: neale 
 facebook_username: neale.ratzlaff
 portfolio_url: 
-
+gems: [jekyll-paginate]
 # Build settings
 markdown: kramdown
 kramdown:

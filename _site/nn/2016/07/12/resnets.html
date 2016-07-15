@@ -7,10 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>About</title>
-  <meta name="description" content="My journey from nothing to something in all things learning">
+  <title>Ultra Deep Network Topologies</title>
+  <meta name="description" content="">
 
-  <link rel="canonical" href="https://github.com/about/">
+  <link rel="canonical" href="https://github.com/nn/2016/07/12/resnets.html">
   <!-- <link rel="alternate" type="application/rss+xml" title="Neale Ratzlaff" href="https://github.com/feed.xml" /> -->
 
   <!-- Latest compiled and minified CSS -->
@@ -72,22 +72,88 @@
     <div class="container">
 
 
-        <section class="page">
-  <div class="row">
-    <div class="small-6 large-offset-3 columns">
-      <h1>About</h1>
-    </div>
-    <hr />
-    <div class="small-6 large-offset-1 large-10 ">
-      <p>This is the base Jekyll theme. You can find out more info about customizing your Jekyll theme, as well as basic Jekyll usage documentation at <a href="http://jekyllrb.com/">jekyllrb.com</a></p>
+          <!--start of the post title-->
+    <section class="single-post-title-main">
+        <h2>Ultra Deep Network Topologies</h2>
+    </section>
+<!--End of the post title-->
 
-<p>You can find the source code for the Jekyll new theme at: <a href="https://github.com/jglovier/jekyll-new">github.com/jglovier/jekyll-new</a></p>
+<!--Start of the section post-->
+    <section class="post">
+       <p>
+          
+<div class="post-img">
+<img class="img-responsive img-post" src=" /img/synapse.jpeg " />
+</div>
 
-<p>You can find the source code for Jekyll at <a href="https://github.com/jekyll/jekyll">github.com/jekyll/jekyll</a></p>
+<h1 id="all-about-resnets">All About ResNets</h1>
 
-    </div>
+<p>I’ve been wanting to write a post about resnets for some time. They seem like the coolest thing to come out in the last year (I’m looking at you deep compression). 
+Resnets are the brain child of Microsoft Research Asia, and they swpet not just ILSVRC 2015, but also MS COCO, Both of which are difficult datasets with lots of competition. 
+The most interesting part about resnets is that they were implemented as CNNs with huge depth. Where before a very deep network would look like Google’s Inception or VGGnet with 15-20+
+layers before threshholding accuracy. Resnets were implemented successfully with 152 layer nets, I encourage you to <a href="https://arxiv.org/abs/1512.03385">read the paper</a> for a primer. 
+Microsoft achieved a 6.7% top 5 error rate on Imagenet, which should sit right around human performance. These results were passed recently by facebook’s torch implementation where
+they took the model to 200 layers and still saw an increase in accuracy beyond MSRA.</p>
 
-  </section>
+<h3 id="facebooks-resnet">Facebook’s ResNet</h3>
+
+<div class="post-img">
+<img class="img-responsive img-post" src=" /img/facebook_resnet_results.png " width="60%" height="60%" />
+</div>
+
+
+       </p>
+
+    </section>
+
+    <!--start of section author-->
+    <section class="single-author">
+        <div class="post-details">
+            
+            <span> Done At: Jul 12,2016</span>
+            <div class="categories">
+                <em>Categories:</em>
+                <ul>
+                
+                    <li><a>NN</a></li>
+                    
+                   
+                </ul>
+            </div>
+
+          
+
+        </div>
+    </section>
+<!--End of section author-->
+	
+  <div class="col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-8">
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'EnRatz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+	
+
+   
+  </div>
+
+</div>
+<hr/>
+
+
+
+</section>
 
 
 
