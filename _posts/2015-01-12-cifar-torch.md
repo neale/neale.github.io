@@ -38,7 +38,6 @@ For MNIST here is the code that I used to generate a fast implementation of a fe
 I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.
 
 ```python
-
 def load_data():
     mnist = fetch_mldata('MNIST original')
     X, y = mnist.data / 255., mnist.target
@@ -85,6 +84,7 @@ if __name__ == '__main__':
     print "MLP 1 Training set score: %f" % mlp.score(X_train, Y_train)
     print "MLP 1 Test set score: %f" % mlp.score(X_test, Y_test)
 ```
+
 The rest of the code can be found [here](https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py) if you want to implement it yourself.
 The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
 If all of this is gibberish you should read my [simplified neural network](http://neale.github.io) post. Both models preformed better than 95%, which is what is expected of human
