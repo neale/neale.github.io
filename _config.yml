@@ -5,11 +5,13 @@ description: My journey from nothing to something in all things learning
 baseurl: "" # the subpath of your site, e.g. /blog/
 paginate: 5
 url: "https://github.com"
-highlighter: pygments
 twitter_username: 
 github_username: neale 
 facebook_username: neale.ratzlaff
 portfolio_url: 
 
 # Build settings
-markdown: kramdown
+markdown: redcarpet2    
+redcarpet:    
+    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+          
