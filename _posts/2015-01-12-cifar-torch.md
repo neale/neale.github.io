@@ -101,13 +101,67 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 For both architectures I used small convolutional filters to minimize parameter growth in such a deep network
 if you want to know more details about the architecture I have a research paper posted [here](http://github.com/neale/convnet/blob/master/effect-model-complexity.pdf)
-that you should read. 
+that you should read. The CNN trained for a few hours on MNIST, and for two days on cifar-10 until it finally converged. The results were well worth the wait. 
+
+Here is the larger Convnet model that I used to classify cifar-10, written in torch
+```lua
+
+local vgg = nn.Sequential()
+
+-- building block
+local function ConvReLU(nInputPlane, nOutputPlane)
+  vgg:add(nn.SpatialConvolution(nInputPlane, nOutputPlane, 3,3, 1,1, 1,1))
+  vgg:add(nn.ReLU(true))
+  return vgg
+end
+
+local MaxPooling = nn.SpatialMaxPooling
+
+ConvReLU(3,64)
+ConvReLU(64,64)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+
+ConvReLU(64,128):add(nn.Dropout(0.5))
+ConvReLU(128,128)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+
+ConvReLU(128,256):add(nn.Dropout(0.5))
+ConvReLU(256,256):add(nn.Dropout(0.5))
+ConvReLU(256,256)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+
+ConvReLU(256,512):add(nn.Dropout(0.5))
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+vgg:add(nn.View(512))
+
+clr = nn.Sequential()
+clr:add(nn.Dropout(0.5))
+clr:add(nn.Linear(512,512))
+clr:add(nn.BatchNormalization(512))
+clr:add(nn.ReLU(true))
+clr:add(nn.Dropout(0.5))
+clr:add(nn.Linear(512,10))
+vgg:add(classifier)
+
+return vgg  
+```
+
+Here are the model results from the benchmarks I ran:
 
 {% if page.image %}
+
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_graph.png" width="60%" height="60%" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" width="70%" height="60%" />
 </div>
 {% endif %}
+
 
 
 
