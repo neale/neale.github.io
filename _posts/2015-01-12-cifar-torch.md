@@ -87,7 +87,19 @@ if __name__ == '__main__':
 ```
 The rest of the code can be found [here](https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py) if you want to implement it yourself.
 The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
-If all of this is gibberish you should read my [simplified neural network](http://neale.github.io)
+If all of this is gibberish you should read my [simplified neural network](http://neale.github.io) post. Both models preformed better than 95%, which is what is expected of human
+participants in an equivilant task. 
+
+The Convnets I used were of two different architectures, a small one for MNIST and a deeper network for cifar-10. The MNIST convnet had few weights (60k) and was 
+lightly regularized, while the deeper net was a VGG16-style net which was heavily regularized with 16 layers. Here are the presented architectures for both of the convnets
+{% if page.image %}
+<div class="post-img">
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png"/>
+</div>
+{% endif %}
+
+
+
 
 
 
