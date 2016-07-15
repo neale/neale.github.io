@@ -100,7 +100,7 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 {% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_time.png" width="60%" height="60%" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_graph.png" width="60%" height="60%" />
 </div>
 {% endif %}
 
