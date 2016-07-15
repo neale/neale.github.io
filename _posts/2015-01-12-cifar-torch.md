@@ -93,14 +93,14 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 {% if page.image %}
 
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="400" height="1200" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="600" height="1400" />
 </div>
 {% endif %}
 
 
 {% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_time.png" width="600" height="400" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_time.png" width="60%" height="60%" />
 </div>
 {% endif %}
 
