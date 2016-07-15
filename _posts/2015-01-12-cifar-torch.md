@@ -32,7 +32,7 @@ dimensions. In terms of images this is extremely low dimensional data and makes 
 different scales, translations, and rotations. Cifar images have 3072 dimensions, but there are far more latent features contained that need to be extracted. Recognizing airplaces 
 in multiple different positions requires a different approach than being able to differentiate different binary images of digits. 
 
-MNIST Models
+Models
 -----------
 For MNIST here is the code that I used to generate a fast implementation of a feed forward neural network and a Nearest Neighbor classifier in python and scikit-learn. 
 I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.
