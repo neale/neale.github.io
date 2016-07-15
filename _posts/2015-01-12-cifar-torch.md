@@ -89,16 +89,18 @@ participants in an equivilant task.
 
 The Convnets I used were of two different architectures, a small one for MNIST and a deeper network for cifar-10. The MNIST convnet had few weights (60k) and was 
 lightly regularized, while the deeper net was a VGG16-style net which was heavily regularized with 16 layers. Here are the presented architectures for both of the convnets
+
 {% if page.image %}
+
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="200" height="800"/>
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="400" height="1200"/>
 </div>
 {% endif %}
 
 
 {% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="300" height="300"/>
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_train_time.png" width="600" height="400"/>
 </div>
 {% endif %}
 
