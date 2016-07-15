@@ -155,11 +155,18 @@ Here is the larger Convnet model that I used to classify cifar-10, written in to
 
 Here are the model results from the benchmarks I ran:
 
+
+## Testing Configuration
+
 Models were trained and tested the same system
+
 * i7 6700K
+
 * GTX 970
+
 * 32GB DDR4
 
+## Model Benchmarks (Top 1)
 
 {% if page.image %}
 
@@ -174,10 +181,16 @@ This allows us to train these models end to end without a object detection layer
 CNNs are more effective than any other model in terms of classification speed (a single forward and backward pass can be as low as 50ms), and raw accuracy. But CNNs take much more data and much longer to train than other algorithms. 
 This tradeoff is further discussed [in this paper](https://github.com/neale/convnet/blob/master/effect-model-complexity.pdf)
 
-references
+
+
+###References:
+
 [1] [torch](http://torch.ch/docs/package-docs.html)
+
 [2] [Andrej karpathy's CS231n class](http://cs231n.github.io/)
+
 [3] [cifar-10](https://www.cs.toronto.edu/~kriz/cifar.html)
+
 [4] [MNIST](http://yann.lecun.com/exdb/mnist/)
 
 
