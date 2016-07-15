@@ -1,5 +1,5 @@
 ---
-layout: 
+layout: post
 title:  "The Super Effectiveness of Convolutional Neural Nets"
 date:   2016-07-14 23:25:05
 categories: NN
