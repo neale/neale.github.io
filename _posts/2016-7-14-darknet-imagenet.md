@@ -2,7 +2,7 @@
 layout: post
 title:  "Dark Imagenet on YOLO"
 date:   2015-01-12 23:25:05
-categories: Neural Networks
+categories: NN
 image: true
 ---
 
