@@ -11,10 +11,9 @@ facebook_username: neale.ratzlaff
 portfolio_url: 
 gems: [jekyll-paginate]
 # Build settings
-#markdown: kramdown
-#kramdown:
+markdown: kramdown
 #    input : GFM
-#    syntax_highlighter : rouge
+highlighter : rouge
 #redcarpet:    
 #    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
           
