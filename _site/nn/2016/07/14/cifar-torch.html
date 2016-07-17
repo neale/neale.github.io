@@ -106,52 +106,51 @@ in multiple different positions requires a different approach than being able to
 <p>For MNIST here is the code that I used to generate a fast implementation of a feed forward neural network and a Nearest Neighbor classifier in python and scikit-learn. 
 I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.</p>
 
-<div class="language-python highlighter-rouge"><pre class="highlight"><code><span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
-    <span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_mldata</span><span class="p">(</span><span class="s">'MNIST original'</span><span class="p">)</span>
-    <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mf">255.</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">60000</span><span class="p">:]</span>
-    <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">60000</span><span class="p">:]</span>
-    <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>
+<p>```python</p>
 
-<span class="k">def</span> <span class="nf">build_clf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf_class</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
-    <span class="s">"""build any classifier that implements a fit method with
-    given parameters"""</span>
+<figure class="highlight"><pre><code class="language-python" data-lang="python">  <span class="k">def</span> <span class="nf">load_data</span><span class="p">():</span>
+      <span class="n">mnist</span> <span class="o">=</span> <span class="n">fetch_mldata</span><span class="p">(</span><span class="s">'MNIST original'</span><span class="p">)</span>
+      <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">data</span> <span class="o">/</span> <span class="mf">255.</span><span class="p">,</span> <span class="n">mnist</span><span class="o">.</span><span class="n">target</span>
+      <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span> <span class="o">=</span> <span class="n">X</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">X</span><span class="p">[</span><span class="mi">60000</span><span class="p">:]</span>
+      <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span> <span class="o">=</span> <span class="n">y</span><span class="p">[:</span><span class="mi">60000</span><span class="p">],</span> <span class="n">y</span><span class="p">[</span><span class="mi">60000</span><span class="p">:]</span>
+      <span class="k">return</span> <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">y_train</span><span class="p">,</span> <span class="n">y_test</span>
 
-    <span class="n">clf</span> <span class="o">=</span> <span class="n">clf_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
-    <span class="n">clf_fit</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">clf_fit</span>
+  <span class="k">def</span> <span class="nf">build_clf</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">clf_class</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+      <span class="s">"""build any classifier that implements a fit method with
+      given parameters"""</span>
+
+      <span class="n">clf</span> <span class="o">=</span> <span class="n">clf_class</span><span class="p">(</span><span class="o">**</span><span class="n">kwargs</span><span class="p">)</span>
+      <span class="n">clf_fit</span> <span class="o">=</span> <span class="n">clf</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">clf_fit</span>
 
 
-<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
-    <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
-    <span class="n">KNN_hyperparams</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'n_neighbors'</span> <span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
-        <span class="s">'n_jobs'</span>      <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
-        <span class="s">'algorithm'</span>   <span class="p">:</span> <span class="s">'auto'</span><span class="p">,</span>
-        <span class="s">'p'</span>           <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
-        <span class="s">'leaf_size'</span>   <span class="p">:</span> <span class="mi">10</span>
-    <span class="p">}</span>
-    <span class="n">MLP_hyperparams</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s">'hidden_layer_sizes'</span> <span class="p">:</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
-        <span class="s">'activation'</span>         <span class="p">:</span> <span class="s">'relu'</span><span class="p">,</span>
-        <span class="s">'algorithm'</span>          <span class="p">:</span> <span class="s">'sgd'</span><span class="p">,</span>
-        <span class="s">'batch_size'</span>         <span class="p">:</span> <span class="s">'auto'</span><span class="p">,</span>
-        <span class="s">'alpha'</span>              <span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
-        <span class="s">'max_iter'</span>           <span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
-        <span class="s">'verbose'</span>            <span class="p">:</span> <span class="bp">True</span>
-    <span class="p">}</span>
-    <span class="k">print</span> <span class="s">"building KNN"</span>
-    <span class="n">knn</span> <span class="o">=</span> <span class="n">build_clf</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">KNN</span><span class="p">,</span> <span class="o">**</span><span class="n">KNN_hyperparams</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">"KNN Training set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">"KNN Test set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
+  <span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">'__main__'</span><span class="p">:</span>
+      <span class="n">X_train</span><span class="p">,</span> <span class="n">X_test</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">Y_test</span> <span class="o">=</span> <span class="n">load_data</span><span class="p">()</span>
+      <span class="n">KNN_hyperparams</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="s">'n_neighbors'</span> <span class="p">:</span> <span class="mi">9</span><span class="p">,</span>
+          <span class="s">'n_jobs'</span>      <span class="p">:</span> <span class="o">-</span><span class="mi">1</span><span class="p">,</span>
+          <span class="s">'algorithm'</span>   <span class="p">:</span> <span class="s">'auto'</span><span class="p">,</span>
+          <span class="s">'p'</span>           <span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+          <span class="s">'leaf_size'</span>   <span class="p">:</span> <span class="mi">10</span>
+      <span class="p">}</span>
+      <span class="n">MLP_hyperparams</span> <span class="o">=</span> <span class="p">{</span>
+          <span class="s">'hidden_layer_sizes'</span> <span class="p">:</span> <span class="p">(</span><span class="mi">512</span><span class="p">,</span><span class="mi">4</span><span class="p">),</span>
+          <span class="s">'activation'</span>         <span class="p">:</span> <span class="s">'relu'</span><span class="p">,</span>
+          <span class="s">'algorithm'</span>          <span class="p">:</span> <span class="s">'sgd'</span><span class="p">,</span>
+          <span class="s">'batch_size'</span>         <span class="p">:</span> <span class="s">'auto'</span><span class="p">,</span>
+          <span class="s">'alpha'</span>              <span class="p">:</span> <span class="mf">0.01</span><span class="p">,</span>
+          <span class="s">'max_iter'</span>           <span class="p">:</span> <span class="mi">500</span><span class="p">,</span>
+          <span class="s">'verbose'</span>            <span class="p">:</span> <span class="bp">True</span>
+      <span class="p">}</span>
+      <span class="k">print</span> <span class="s">"building KNN"</span>
+      <span class="n">knn</span> <span class="o">=</span> <span class="n">build_clf</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">KNN</span><span class="p">,</span> <span class="o">**</span><span class="n">KNN_hyperparams</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">"KNN Training set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">"KNN Test set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">knn</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
 
-    <span class="k">print</span> <span class="s">"building MLP"</span>
-    <span class="n">mlp</span> <span class="o">=</span> <span class="n">build_clf</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">MLPClassifier</span><span class="p">,</span> <span class="o">**</span><span class="n">MLP_hyperparams</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">"MLP 1 Training set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">mlp</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
-    <span class="k">print</span> <span class="s">"MLP 1 Test set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">mlp</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span>
-
-</code></pre>
-</div>
+      <span class="k">print</span> <span class="s">"building MLP"</span>
+      <span class="n">mlp</span> <span class="o">=</span> <span class="n">build_clf</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">,</span> <span class="n">MLPClassifier</span><span class="p">,</span> <span class="o">**</span><span class="n">MLP_hyperparams</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">"MLP 1 Training set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">mlp</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_train</span><span class="p">,</span> <span class="n">Y_train</span><span class="p">)</span>
+      <span class="k">print</span> <span class="s">"MLP 1 Test set score: </span><span class="si">%</span><span class="s">f"</span> <span class="o">%</span> <span class="n">mlp</span><span class="o">.</span><span class="n">score</span><span class="p">(</span><span class="n">X_test</span><span class="p">,</span> <span class="n">Y_test</span><span class="p">)</span></code></pre></figure>
 
 <p>The rest of the code can be found <a href="https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py">here</a> if you want to implement it yourself.
 The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
