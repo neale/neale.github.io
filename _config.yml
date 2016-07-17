@@ -12,8 +12,6 @@ portfolio_url:
 gems: [jekyll-paginate]
 # Build settings
 markdown: kramdown
-#    input : GFM
-highlighter : rouge
-#redcarpet:    
-#    extensions: ["no_intra_emphasis", "fenced_code_blocks", "autolink", "strikethrough", "superscript"]
+    input : GFM
+    syntax-highlighter : rouge
           
