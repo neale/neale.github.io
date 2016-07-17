@@ -9,9 +9,9 @@ twitter_username:
 github_username: neale 
 facebook_username: neale.ratzlaff
 portfolio_url: 
-gems: [jekyll-paginate]
+# gems: [jekyll-paginate]
 # Build settings
-markdown: kramdown
-    input : GFM
-    syntax-highlighter : rouge
+#markdown: kramdown
+#    input : GFM
+#    syntax-highlighter : rouge
           
