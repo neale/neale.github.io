@@ -79,7 +79,7 @@ pre,code{
   max-height: 65%;
 }
 
-/* Add up blockquote style*/
+/* Add up blockquote style
 .blockquote{
   font-size: 3em;
   font-family: 'Monostate',sans-serif,Times;
@@ -89,4 +89,4 @@ pre,code{
   color: #787878;
   cursor: disabled;
 
-}
+}*/
