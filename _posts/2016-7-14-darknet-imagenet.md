@@ -27,5 +27,5 @@ image: true
 
 
 But I think I've done better than anyone else, 
-Hardware acceration coming soon
+Hardware acceleration coming soon.................
 
