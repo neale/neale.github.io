@@ -4,13 +4,11 @@ smalltalk: "Deep Learning, Hardware, and Other Hackings"
 description: My journey from nothing to something in all things learning
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "https://github.com"
-twitter_username: 
+twitter_username:  
 github_username: neale 
 facebook_username: neale.ratzlaff
 portfolio_url: 
-# gems: [jekyll-paginate]
-# Build settings
-#markdown: kramdown
-#    input : GFM
-#    syntax-highlighter : rouge
+markdown: kramdown
+    input : GFM
+    syntax-highlighter : rouge
           
