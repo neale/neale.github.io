@@ -12,7 +12,9 @@ image: true
 
 {% if page.image %}
 <div class="post-img">
+<p align="center">  
 <img class="img-responsive img-post" src=" {{site.baseurl}}/img/synapse.jpeg "/>
+</p>
 </div>
 {% endif %}
 
