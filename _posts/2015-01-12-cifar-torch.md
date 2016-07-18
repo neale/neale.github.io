@@ -8,7 +8,7 @@ image: true
 
 
 
-<!--To start off this **Blog** I thought I would give a history of where Ive been on my short ourney so for, starting with my first encounter with a neural net. A year or so ago I came across an npm package called Synaptic which gives some functions for defining the behavior of artificial neurons.-->
+<!-- To -->
 
 {% if page.image %}
 <div class="post-img">
