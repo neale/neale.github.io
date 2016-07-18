@@ -99,7 +99,7 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 {% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" align="middle" width="600" height="1400" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" align="center" width="600" height="1400" />
 </div>
 {% endif %}
 
@@ -167,7 +167,7 @@ Models were trained and tested the same system
 {% if page.image %}
 
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" align="middle" width="80%" height="80%" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" align="center" width="80%" height="80%" />
 </div>
 {% endif %}
 
