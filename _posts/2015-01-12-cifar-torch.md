@@ -99,7 +99,9 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 {% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" align="center" width="600" height="1400" />
+<p align="center">
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="600" height="1400" />
+<\p>
 </div>
 {% endif %}
 
