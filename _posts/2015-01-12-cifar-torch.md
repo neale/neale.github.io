@@ -18,6 +18,7 @@ image: true
 
 Prologue
 ===========
+
 Neural networks have become so pervasive in the machine learning community that I began to wonder if they were really worth all the hype. There are daily publications on arXiv
 and on Hacker News about new deep learning techniques and new architectures. Many of these are grad students applying neural networks to a job that doesn't need their 
 special sauce. But there are two areas in particular where neural nets have provided such a boost in ability, that its not even fair to compare them to conventional 
@@ -34,8 +35,11 @@ in multiple different positions requires a different approach than being able to
 
 Models
 -----------
+
 For MNIST here is the code that I used to generate a fast implementation of a feed forward neural network and a Nearest Neighbor classifier in python and scikit-learn. 
 I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.
+
+
 
 ```python
 def load_data():
@@ -83,6 +87,7 @@ if __name__ == '__main__':
   print "MLP 1 Test set score: %f" % mlp.score(X_test, Y_test)
 ```
 
+
 The rest of the code can be found [here](https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py) if you want to implement it yourself.
 The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
 If all of this is gibberish you should read my [simplified neural network](http://neale.github.io) post. Both models preformed better than 95%, which is what is expected of human
@@ -91,12 +96,13 @@ participants in an equivilant task.
 The Convnets I used were of two different architectures, a small one for MNIST and a deeper network for cifar-10. The MNIST convnet had few weights (60k) and was 
 lightly regularized, while the deeper net was a VGG16-style net which was heavily regularized with 16 layers. Here are the presented architectures for both of the convnets
 
-{% if page.image %}
 
+{% if page.image %}
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="600" height="1400" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" align="middle" width="600" height="1400" />
 </div>
 {% endif %}
+
 
 For both architectures I used small convolutional filters to minimize parameter growth in such a deep network
 if you want to know more details about the architecture I have a research paper posted [here](http://github.com/neale/convnet/blob/master/effect-model-complexity.pdf)
@@ -104,61 +110,45 @@ that you should read. The CNN trained for a few hours on MNIST, and for two days
 
 Here is the larger Convnet model that I used to classify cifar-10, written in torch
 
+
 ```lua
 
 local vgg = nn.Sequential()
 
--- building block
+-- building block conv layer function
+-- One conv layer with a ReLU, 
+-- Maybe try and optimize with a leaky ReLU to prevent dead neurons 
+
 local function ConvReLU(nInputPlane, nOutputPlane)
   vgg:add(nn.SpatialConvolution(nInputPlane, nOutputPlane, 3,3, 1,1, 1,1))
   vgg:add(nn.ReLU(true))
   return vgg
 end
 
-local MaxPooling = nn.SpatialMaxPooling
+-- heavy regularization with a .6 dropout probability
 
-ConvReLU(3,64)
-ConvReLU(64,64)
-vgg:add(MaxPooling(2,2,2,2):ceil())
-
-ConvReLU(64,128):add(nn.Dropout(0.5))
-ConvReLU(128,128)
-vgg:add(MaxPooling(2,2,2,2):ceil())
-
-ConvReLU(128,256):add(nn.Dropout(0.5))
-ConvReLU(256,256):add(nn.Dropout(0.5))
-ConvReLU(256,256)
-vgg:add(MaxPooling(2,2,2,2):ceil())
-
-ConvReLU(256,512):add(nn.Dropout(0.5))
-ConvReLU(512,512):add(nn.Dropout(0.5))
-ConvReLU(512,512)
-vgg:add(MaxPooling(2,2,2,2):ceil())
-
-ConvReLU(512,512):add(nn.Dropout(0.5))
-ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512):add(nn.Dropout(0.6))
+ConvReLU(512,512):add(nn.Dropout(0.6))
 ConvReLU(512,512)
 vgg:add(MaxPooling(2,2,2,2):ceil())
 vgg:add(nn.View(512))
 
+-- terminate the conv network with a fully connected neural network
+-- linear FC units act as a classifier, to consolidate the conv-feature maps into 10 classes
+-- final softmax to generate negative log probabilities for each class
+
 clr = nn.Sequential()
 clr:add(nn.Dropout(0.5))
 clr:add(nn.Linear(512,512))
-clr:add(nn.BatchNormalization(512))
 clr:add(nn.ReLU(true))
 clr:add(nn.Dropout(0.5))
 clr:add(nn.Linear(512,10))
-vgg:add(classifier)
-
-return vgg  
-
+clr:add(criterion.LogSoftmax())
 ```
 
-```ruby
-require 'redcarpet'
-```
 
 Here are the model results from the benchmarks I ran:
+
 
 
 ## Testing Configuration
@@ -171,12 +161,13 @@ Models were trained and tested the same system
 
 * 32GB DDR4
 
+
 ## Model Benchmarks (Top 1)
 
 {% if page.image %}
 
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" width="80%" height="80%" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" align="middle" width="80%" height="80%" />
 </div>
 {% endif %}
 
