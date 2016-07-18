@@ -103,7 +103,9 @@ if you want to know more details about the architecture I have a research paper 
 that you should read. The CNN trained for a few hours on MNIST, and for two days on cifar-10 until it finally converged. The results were well worth the wait. 
 
 Here is the larger Convnet model that I used to classify cifar-10, written in torch
+
 ```lua
+
 local vgg = nn.Sequential()
 
 -- building block
@@ -149,7 +151,13 @@ clr:add(nn.Linear(512,10))
 vgg:add(classifier)
 
 return vgg  
+
 ```
+
+```ruby
+require 'redcarpet'
+```
+
 Here are the model results from the benchmarks I ran:
 
 
