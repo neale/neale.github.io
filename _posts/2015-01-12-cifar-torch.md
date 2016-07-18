@@ -38,52 +38,50 @@ For MNIST here is the code that I used to generate a fast implementation of a fe
 I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.
 
 ```python
-{% highlight python %}
-  def load_data():
-      mnist = fetch_mldata('MNIST original')
-      X, y = mnist.data / 255., mnist.target
-      X_train, X_test = X[:60000], X[60000:]
-      y_train, y_test = y[:60000], y[60000:]
-      return X_train, X_test, y_train, y_test
+def load_data():
+  mnist = fetch_mldata('MNIST original')
+  X, y = mnist.data / 255., mnist.target
+  X_train, X_test = X[:60000], X[60000:]
+  y_train, y_test = y[:60000], y[60000:]
+  return X_train, X_test, y_train, y_test
 
-  def build_clf(X, y, clf_class, **kwargs):
-      """build any classifier that implements a fit method with
-      given parameters"""
+def build_clf(X, y, clf_class, **kwargs):
+  """build any classifier that implements a fit method with
+  given parameters"""
 
-      clf = clf_class(**kwargs)
-      clf_fit = clf.fit(X, y)
-      return clf_fit
+  clf = clf_class(**kwargs)
+  clf_fit = clf.fit(X, y)
+  return clf_fit
 
 
-  if __name__ == '__main__':
-      X_train, X_test, Y_train, Y_test = load_data()
-      KNN_hyperparams = {
-          'n_neighbors' : 9,
-          'n_jobs'      : -1,
-          'algorithm'   : 'auto',
-          'p'           : 1,
-          'leaf_size'   : 10
-      }
-      MLP_hyperparams = {
-          'hidden_layer_sizes' : (512,4),
-          'activation'         : 'relu',
-          'algorithm'          : 'sgd',
-          'batch_size'         : 'auto',
-          'alpha'              : 0.01,
-          'max_iter'           : 500,
-          'verbose'            : True
-      }
-      print "building KNN"
-      knn = build_clf(X_train, Y_train, KNN, **KNN_hyperparams)
-      print "KNN Training set score: %f" % knn.score(X_train, Y_train)
-      print "KNN Test set score: %f" % knn.score(X_test, Y_test)
+if __name__ == '__main__':
+  X_train, X_test, Y_train, Y_test = load_data()
+  KNN_hyperparams = {
+      'n_neighbors' : 9,
+      'n_jobs'      : -1,
+      'algorithm'   : 'auto',
+      'p'           : 1,
+      'leaf_size'   : 10
+  }
+  MLP_hyperparams = {
+      'hidden_layer_sizes' : (512,4),
+      'activation'         : 'relu',
+      'algorithm'          : 'sgd',
+      'batch_size'         : 'auto',
+      'alpha'              : 0.01,
+      'max_iter'           : 500,
+      'verbose'            : True
+  }
+  print "building KNN"
+  knn = build_clf(X_train, Y_train, KNN, **KNN_hyperparams)
+  print "KNN Training set score: %f" % knn.score(X_train, Y_train)
+  print "KNN Test set score: %f" % knn.score(X_test, Y_test)
 
-      print "building MLP"
-      mlp = build_clf(X_train, Y_train, MLPClassifier, **MLP_hyperparams)
-      print "MLP 1 Training set score: %f" % mlp.score(X_train, Y_train)
-      print "MLP 1 Test set score: %f" % mlp.score(X_test, Y_test)
-
-{% endhighlight %}
+  print "building MLP"
+  mlp = build_clf(X_train, Y_train, MLPClassifier, **MLP_hyperparams)
+  print "MLP 1 Training set score: %f" % mlp.score(X_train, Y_train)
+  print "MLP 1 Test set score: %f" % mlp.score(X_test, Y_test)
+```
 
 The rest of the code can be found [here](https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py) if you want to implement it yourself.
 The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
