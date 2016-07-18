@@ -103,53 +103,53 @@ if you want to know more details about the architecture I have a research paper 
 that you should read. The CNN trained for a few hours on MNIST, and for two days on cifar-10 until it finally converged. The results were well worth the wait. 
 
 Here is the larger Convnet model that I used to classify cifar-10, written in torch
+```lua
+local vgg = nn.Sequential()
 
-    local vgg = nn.Sequential()
+-- building block
+local function ConvReLU(nInputPlane, nOutputPlane)
+  vgg:add(nn.SpatialConvolution(nInputPlane, nOutputPlane, 3,3, 1,1, 1,1))
+  vgg:add(nn.ReLU(true))
+  return vgg
+end
 
-    -- building block
-    local function ConvReLU(nInputPlane, nOutputPlane)
-      vgg:add(nn.SpatialConvolution(nInputPlane, nOutputPlane, 3,3, 1,1, 1,1))
-      vgg:add(nn.ReLU(true))
-      return vgg
-    end
+local MaxPooling = nn.SpatialMaxPooling
 
-    local MaxPooling = nn.SpatialMaxPooling
+ConvReLU(3,64)
+ConvReLU(64,64)
+vgg:add(MaxPooling(2,2,2,2):ceil())
 
-    ConvReLU(3,64)
-    ConvReLU(64,64)
-    vgg:add(MaxPooling(2,2,2,2):ceil())
+ConvReLU(64,128):add(nn.Dropout(0.5))
+ConvReLU(128,128)
+vgg:add(MaxPooling(2,2,2,2):ceil())
 
-    ConvReLU(64,128):add(nn.Dropout(0.5))
-    ConvReLU(128,128)
-    vgg:add(MaxPooling(2,2,2,2):ceil())
+ConvReLU(128,256):add(nn.Dropout(0.5))
+ConvReLU(256,256):add(nn.Dropout(0.5))
+ConvReLU(256,256)
+vgg:add(MaxPooling(2,2,2,2):ceil())
 
-    ConvReLU(128,256):add(nn.Dropout(0.5))
-    ConvReLU(256,256):add(nn.Dropout(0.5))
-    ConvReLU(256,256)
-    vgg:add(MaxPooling(2,2,2,2):ceil())
+ConvReLU(256,512):add(nn.Dropout(0.5))
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512)
+vgg:add(MaxPooling(2,2,2,2):ceil())
 
-    ConvReLU(256,512):add(nn.Dropout(0.5))
-    ConvReLU(512,512):add(nn.Dropout(0.5))
-    ConvReLU(512,512)
-    vgg:add(MaxPooling(2,2,2,2):ceil())
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512):add(nn.Dropout(0.5))
+ConvReLU(512,512)
+vgg:add(MaxPooling(2,2,2,2):ceil())
+vgg:add(nn.View(512))
 
-    ConvReLU(512,512):add(nn.Dropout(0.5))
-    ConvReLU(512,512):add(nn.Dropout(0.5))
-    ConvReLU(512,512)
-    vgg:add(MaxPooling(2,2,2,2):ceil())
-    vgg:add(nn.View(512))
+clr = nn.Sequential()
+clr:add(nn.Dropout(0.5))
+clr:add(nn.Linear(512,512))
+clr:add(nn.BatchNormalization(512))
+clr:add(nn.ReLU(true))
+clr:add(nn.Dropout(0.5))
+clr:add(nn.Linear(512,10))
+vgg:add(classifier)
 
-    clr = nn.Sequential()
-    clr:add(nn.Dropout(0.5))
-    clr:add(nn.Linear(512,512))
-    clr:add(nn.BatchNormalization(512))
-    clr:add(nn.ReLU(true))
-    clr:add(nn.Dropout(0.5))
-    clr:add(nn.Linear(512,10))
-    vgg:add(classifier)
-
-    return vgg  
-
+return vgg  
+```
 Here are the model results from the benchmarks I ran:
 
 
