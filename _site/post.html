@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!-- Begin Jekyll SEO tag v2.3.0 -->
+<title>neale.github.io | My journey to learn how to learn</title>
+<meta property="og:title" content="neale.github.io" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="My journey to learn how to learn" />
+<meta property="og:description" content="My journey to learn how to learn" />
+<meta property="og:site_name" content="neale.github.io" />
+<script type="application/ld+json">
+{"name":null,"description":"My journey to learn how to learn","author":null,"@type":"WebPage","url":"/post.html","publisher":null,"image":null,"headline":"neale.github.io","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
+    <link href="/assets/css/style.css?v=90c8484fa4132b87f81dad439dbc2389372f17d3" rel="stylesheet">
+  </head>
+  <body>
+    <div class="container-lg px-3 my-5 markdown-body">
+      
+        <h1><a href="/">neale.github.io</a></h1>
+      
+
+        <!--start of the post title-->
+    <section class="single-post-title-main">
+        <h2></h2>
+    </section>
+<!--End of the post title-->
+
+<!--Start of the section post-->
+    <section class="post">
+       <p>
+            <!--start of the post title-->
+    <section class="single-post-title-main">
+        <h2>Generating code with character level RNNs </h2>
+    </section>
+<!--End of the post title-->
+
+<!--Start of the section post-->
+    <section class="post">
+       <p>
+          <!--To start off this **Blog** I thought I would give a history of where Ive been on my short ourney so for, starting with my first encounter with a neural net. A year or so ago I came across an npm package called Synaptic which gives some functions for defining the behavior of artificial neurons.-->
+
+<p>Well I said I was going to source code with my character RNN and last weekend I did just that. I grabbed the largest open source programs I could find. 
+Obviously I took the linux kernel, and then I thought it would be interesting to see what a neural network thought of itself. So I concatonated the Torch source 
+that’s on Github and sent it through the LSTM. The last thing I did was take all of my code, every last piece of it that’s on Github and tried to see what an RNN 
+thinks of my code. Mostly I was sure that the Linux and Torch sources were going to give much cleaner representations of code than my own source will.</p>
+
+<h2 id="linux-source-code">Linux Source Code</h2>
+
+<p>Without further delay, I downloaded the Linux source from <a href="https://github.com/torvalds/linux">Github</a> as a frustratingly large repository of 1.5GB</p>
+
+<p>In order to cat all the files into one disgustingly long file I ran a simple bash line</p>
+
+<blockquote>
+  <p><code class="highlighter-rouge">find linux/ -name '*c' -exec cat {} \; &gt; ../linux.txt</code></p>
+</blockquote>
+
+<p>This file was a lot larger than the C.S. Lewis corpus, at 541MB and needed 50 days to train with a 6 layer LSTM. I didn’t want to wait that long so I cut the file down to 50MB and trained it from there. Here is some of the sampled code it generated. 
+This time I’m going to cherry pick the results because I think that’s more interesting. We already know these models aren’t perfect.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">struct</span> <span class="n">seq_file</span> <span class="n">omap2_current_clkdm</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="p">.</span><span class="n">name</span> <span class="o">=</span> <span class="s">"root[-32"</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">traps</span> <span class="o">=</span> <span class="n">vcpu</span><span class="o">-&gt;</span><span class="n">arch</span><span class="p">.</span><span class="n">entry</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">gpio_cap</span> <span class="o">=</span> <span class="n">ia64_execution_setup</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">ll</span> <span class="o">=</span> <span class="n">have_apply_vddump</span><span class="p">,</span>
+        <span class="p">.</span><span class="n">config_r_set</span> <span class="o">=</span> <span class="n">omap3_ll_core_red</span><span class="p">.</span><span class="n">fn</span><span class="p">,</span>
+<span class="p">};</span>
+
+<span class="k">static</span> <span class="kt">void</span> <span class="nf">__omap1_code_init</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+        <span class="kt">int</span> <span class="n">rt</span><span class="p">;</span>
+
+        <span class="n">pci_dir_dt_map_partte</span><span class="p">(</span><span class="n">val</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="k">static</span> <span class="kt">char</span> <span class="o">*</span><span class="n">pxa27x_pxa_reset_interrupts</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="n">ARMV7_PERFCTR_TC_INTLM</span><span class="p">,</span>
+        <span class="n">MFP_FAULT</span><span class="p">(</span><span class="n">EXP_OFFSET</span><span class="p">,</span> <span class="n">IS_CALL_AT_P</span><span class="p">,</span> <span class="mi">0</span><span class="p">),</span>
+        <span class="n">IO_ADDRESS</span><span class="p">(</span><span class="n">ETRAX_PM_CONTROL_0</span><span class="p">),</span>
+        <span class="n">SMART_DAT</span><span class="p">(</span><span class="mh">0x00</span><span class="p">),</span>
+        <span class="n">SMART_DAT</span><span class="p">(</span><span class="mh">0x00</span><span class="p">),</span>
+        <span class="n">SMART_CMD</span><span class="p">(</span><span class="mh">0x00</span><span class="p">),</span>
+        <span class="n">SMART_CMD</span><span class="p">(</span><span class="mi">1130</span><span class="p">),</span>
+        <span class="n">CLK</span><span class="p">(</span><span class="n">VAL1_9</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">49</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">),</span>
+<span class="p">};</span>
+
+</code></pre></div></div>
+
+<p>There’s a whole lot of learning take place, from just characters the LSTM has learned to generate code that with a little work, could compile. 
+This code could probably fool most undergraduate TAs into thinking the student did some work. Althrough if the student was generating their code with an LSTM, 
+they probably deserve a decent grade.</p>
+
+<div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">static</span> <span class="k">struct</span> <span class="n">platform_driver</span> <span class="o">*</span><span class="n">pmu_config</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span>
+        <span class="cm">/* MIPS of support */</span>
+        <span class="kt">char</span> <span class="o">*</span> <span class="n">power_map_arch</span> <span class="o">=</span> <span class="p">{</span>
+                <span class="n">NUM_UHAX_DEVID_BASE_END</span> <span class="p">};</span>
+        <span class="n">__stackpoint_idtop</span><span class="p">.</span><span class="n">mask</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="cm">/* Wree test counter uses for range to configure RESH, input */</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">edit_tables</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">==</span> <span class="mi">4</span><span class="p">)</span>
+                <span class="n">cpu_none</span> <span class="o">=</span> <span class="n">jab_boot</span><span class="p">();</span>
+        <span class="n">qeat_info</span><span class="o">-&gt;</span><span class="n">ia32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">__pstate_thread_flag</span> <span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">dma_ptr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">))</span> <span class="p">{</span>
+                <span class="n">pr_info</span><span class="p">(</span><span class="s">"%s: */</span><span class="err">
+</span><span class="s">                pe_current_node = 0;</span><span class="err">
+</span><span class="s">        }</span><span class="err">
+</span><span class="s">        max = new_cache_page[ncriss_reading.cpu];</span><span class="err">
+</span><span class="s">        if (err &lt; 16) {</span><span class="err">
+</span><span class="s">                switch (ch) {</span><span class="err">
+</span><span class="s">                        case 1:</span><span class="err">
+</span><span class="s">                        break;</span><span class="err">
+</span><span class="s">                }</span><span class="err">
+</span><span class="s">        }</span><span class="err">
+</span><span class="s">        __flush_icache_range(lan, highol.etbys);</span><span class="err">
+</span><span class="s">        __raw_writel(1, regs-&gt;lan, current-&gt;internal);</span><span class="err">
+</span><span class="s">        spin_lock_irqsave(&amp;cpu);</span><span class="err">
+</span><span class="s">        xcmp_init(&amp;bv-&gt;setups);</span><span class="err">
+</span><span class="s">}</span><span class="err">
+
+
+</span></code></pre></div></div>
+
+<p>I saved the best for last, this was the best piece of code that the network generated in my 5000 character sample. In this one function, it uses <code class="highlighter-rouge">case</code>, 
+single line if statements, <code class="highlighter-rouge">struct.</code> and <code class="highlighter-rouge">&amp;struct-&gt;</code>, and functions that take none to many arguments.</p>
+
+<p>C is a very structured lanuage, so there were larger, more obvoius features for the RNN to pick out which I think helped its training. 
+Higher level languages would have more trouble since the interpreter does so much of the heavy lifting. That sounds like a challenge, so lets not just tackle another language. 
+We’re going to generate code from the same RNN, trained on a deep learning framework.</p>
+
+<h2 id="torch-framework-generation">Torch Framework Generation</h2>
+
+<p>I was really excited for this, I wanted to see how a neural network would write scientific code. Torch is a smaller dataset than the Linux source, so I added the cudnn and rnn library sources.
+I’m really considering adding in more Torch code from other repositories just to boster the dataset. But I can’t control how valid someone else’s Torch code is so that seems more likely to contaminate the dataset then help it. I still might do it.</p>
+
+<p>The methodology here is much the same, I downloaded the source from <a href="https://github.com/torch/torch7">Github</a> and catted the whole thing with the above command.
+The resulting text file was ~2MB so I figured it was good to go. Here’s some of the generated source, this is how a neural net would build itself.</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="nf">LSTM</span><span class="p">:</span><span class="n">__init</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+   <span class="k">end</span>
+   <span class="nb">assert</span><span class="p">(</span><span class="n">step</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"set '] then
+      self:recursiveCopy(self.outputSize, t1)
+   end
+
+   -- get the it  convertis sequencen the input to return and (targets through forward for layers
+   
+   self._sequence[self.step-1] = torch.dim() do
+      -- Uoth initialModule
+      self.step = 1
+      assert(torch.type(checkSums.localSumh == next_c)) 
+      self._gradOutput = self.initialModule or torch.LongStorage(self.inputSize, output:size(2))
+      if table.insert(self.modules[1] rho &lt;= 1) and nStep &gt;= 'both' then
+         self.bias:=4:clone(), self.bwdSeq)
+      return self
+end
+
+</span></code></pre></div></div>
+
+<blockquote>
+  <p>wow, the LSTM is writing an LSTM. Is that cannibalism, or asexual reproduction?</p>
+</blockquote>
+
+<p>It even got the commments right, but they’re a little funky since the network doesn’t have any language reference, just source code. 
+So all it knows how to talk about is networks, which probably works.</p>
+
+<p>I was particularly impressed by this bit, it closes parentheses well and it even got the dot operator right.</p>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="nb">assert</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">checkSums</span><span class="p">.</span><span class="n">localSumh</span> <span class="o">==</span> <span class="n">next_c</span><span class="p">))</span> 
+<span class="n">self</span><span class="p">.</span><span class="n">_gradOutput</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">initialModule</span> <span class="ow">or</span> <span class="n">torch</span><span class="p">.</span><span class="n">LongStorage</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">inputSize</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+<span class="k">if</span> <span class="nb">table.insert</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">modules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">rho</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">nStep</span> <span class="o">&gt;=</span> <span class="s1">'both'</span> <span class="k">then</span>
+
+</code></pre></div></div>
+
+<blockquote>
+  <p>This is totally reasonbable lua code that only doesn’t work if you look really close. This really speaks to the quality of code that makes up Torch.
+The generated text would be way more convoluted if the source wasn’t consistant.</p>
+</blockquote>
+
+<div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">function</span> <span class="nf">matInput</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span>
+   <span class="n">self</span><span class="p">.</span><span class="n">zeroTensor</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">recurrentModule</span>
+   <span class="n">self</span><span class="p">.</span><span class="n">output</span> <span class="o">=</span> <span class="n">gradOutput</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span>
+   <span class="n">self</span><span class="p">.</span><span class="n">gradOutput</span> <span class="o">=</span> <span class="kc">nil</span>
+   <span class="k">for</span> <span class="n">step</span><span class="o">=</span><span class="n">nStep</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">10</span> <span class="k">do</span>
+      <span class="n">seq2</span><span class="p">.</span><span class="n">input</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">step</span> <span class="o">*</span> <span class="mi">1</span>
+      <span class="n">self</span><span class="p">.</span><span class="n">_gradInputs</span> <span class="o">=</span> <span class="n">outputs</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span><span class="n">sub</span><span class="p">()</span> <span class="o">*</span> <span class="n">sequence</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> 
+      <span class="n">self</span><span class="p">.</span><span class="n">step</span> <span class="o">=</span> <span class="kc">nil</span>
+      <span class="n">output</span><span class="p">:</span><span class="n">transpose</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">):</span><span class="n">seq</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">outputsize</span><span class="p">)</span>
+      <span class="n">self</span><span class="p">.</span><span class="n">output</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">gradOutput</span><span class="p">:</span><span class="n">clone</span><span class="p">()</span>
+<span class="k">end</span>
+
+</code></pre></div></div>
+
+<p>Next I just need to train the RNN on my own code, this is going to be the most humbling experience of my programming life.</p>
+
+
+       </p>
+
+    </section>
+
+    <!--start of section author-->
+    <section class="single-author">
+        <div class="post-details">
+            
+            <span> Done At: Jan 12,2016</span>
+            <div class="categories">
+                <em>Categories:</em>
+                <ul>
+                
+                    <li><a>NN</a></li>
+                    
+                   
+                </ul>
+            </div>
+
+          
+
+        </div>
+    </section>
+<!--End of section author-->
+	
+  <div class="col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-8">
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'EnRatz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+	
+
+   
+  </div>
+
+</div>
+<hr/>
+
+
+
+</section>
+
+       </p>
+
+    </section>
+
+    <!--start of section author-->
+    <section class="single-author">
+        <div class="post-details">
+            
+            <span> Done At: </span>
+            <div class="categories">
+                <em>Categories:</em>
+                <ul>
+                   
+                </ul>
+            </div>
+
+          
+
+        </div>
+    </section>
+<!--End of section author-->
+	
+  <div class="col-sm-offset-2 col-sm-10 col-md-offset-2 col-md-8">
+	    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+        /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+        var disqus_shortname = 'EnRatz'; // required: replace example with your forum shortname
+
+        /* * * DON'T EDIT BELOW THIS LINE * * */
+        (function() {
+            var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+            dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+            (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+        })();
+    </script>
+    <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    
+  </div>
+	
+
+   
+  </div>
+
+</div>
+<hr/>
+
+
+
+</section>
+
+
+      
+    </div>
+    <script src="/assets/javascript/anchor-js/anchor.min.js"></script>
+    <script>anchors.add();</script>
+  </body>
+</html>
