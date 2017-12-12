@@ -1,23 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Neale Ratzlaff</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/public/images/top_icon.png">
+    <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="/public/application.css">
+        <style>
+        #content {
+            position: relative;
+        }
+        
+        .ribbon {
+            position: absolute;
+            top: 0;
+            right: 0;
+        }
+        </style>
 
-<section class="post-loop container-fluid">
-    {% for post in site.posts %}
-    <div class="row single-post">
-        <div>
-            <h1 class="post-title"><a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a></h1>
+  </head>
+    <body>
+      <div class="content">
+        <img src="images/stock3_1x.png" class="ribbon" width="10%" height="25%">
+        <div>Neale Ratzlaff</div>
+      </div>
 
-            <div class="post-details">
-                <span>{{ post.date | date: "%b %-d, %Y" }}</span>
+     <div class="outer-container">
+            <p> I try to post as frequently as possible, its massively helpful to me as a researcher. I hope its also helpful to you.</p>
+        <div class="inner-container"> 
 
-            </div>
-
-            <!-- <p class="post-excerpt"> -->
-                <!--  {{post.excerpt | length: 140 }} -->
-                <!--</p>-->
-
-            <a class="post-button pi-big pi-retro pi-flat" href="{{ post.url }}">More</a>
-
+            {% for post in site.posts %}  
+            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
+            <p><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} . 
+                <a href="http://neale.github.com{{ post.url }}#disqus_thread"></a></small></p>                    
+            {% endfor %}    
+        
         </div>
     </div>
+  </body>
+</html>
 
-    {% endfor %}
-</section>
