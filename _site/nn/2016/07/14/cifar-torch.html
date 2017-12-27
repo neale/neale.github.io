@@ -1,78 +1,18 @@
-
 <!DOCTYPE html>
-
 <html>
-  <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-
-  <title>The Super Effectiveness of Convolutional Neural Nets</title>
-  <meta name="description" content="">
-
-  <link rel="canonical" href="http://localhost:4000/blog//nn/2016/07/14/cifar-torch.html">
-  <!-- <link rel="alternate" type="application/rss+xml" title="neale.github.io" href="http://localhost:4000/blog//feed.xml" /> -->
-
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <head>
+      <meta charset="utf-8">
+          <title>The Super Effectiveness of Convolutional Neural Nets</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="shortcut icon" href="/public/images/top_icon.png">
+          <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">
+          <link rel="stylesheet" href="/public/post.css">
+    </head>
+    <body>
+        <div class="outer-container">
+            <div class="inner-container">
  
-
-	
-  <!--Added styles css-->	
-  <link rel="stylesheet" href="/blog//css/normalize.css"/>
-
-  <link rel="stylesheet" href="/blog//css/custom.css"/>
-
-   <link rel="stylesheet" href="/blog//css/style.css"/>
-
-    <!--Font awesome-->
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-   <!--modernizr-->
-   <script src="/blog/js/modernizr.js"></script>
-	
-
-
-</head>
-
-
-  <body>
-  <!--[if lt IE 7]>
-      <strong>It seems your browser is quite a bit old, to get latest browser go to this link <a href="http://browsehappy.com">BROWSE HAPPY </a> And get the happy face</strong>
-  <![endif]-->
-
-  
-<!-- Start with the header -->
-<section class="header" id="header">
-
-
-
-    <a class="tab pi-default pi-big pi-flat" target="_blank" href="https://github.com/neale"><class=""></></a>
-
-    <!-- Main Head Title -->
-    <h2><a href="/blog//">neale.github.io</a></h2>
-    
-
-
-
-
-</section>
-
-
-
-
-
-
-
-
-
-
-
-
-    <div class="container">
-
-
-          <!--start of the post title-->
+              <!--start of the post title-->
     <section class="single-post-title-main">
         <h2>The Super Effectiveness of Convolutional Neural Nets</h2>
     </section>
@@ -85,7 +25,7 @@
 
 <div class="post-img">
 <p align="center">  
-<img class="img-responsive img-post" src=" /blog//img/synapse.jpeg " />
+<img class="img-responsive img-post" src=" /img/synapse.jpeg " />
 </p>
 </div>
 
@@ -165,7 +105,7 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 <div class="post-img">
 <p align="center">
-<img class="img-responsive img-post" src=" /blog//img/conv_architectures.png" width="600" height="1400" />
+<img class="img-responsive img-post" src=" /img/conv_architectures.png" width="600" height="1400" />
 </p>
 
 </div>
@@ -231,7 +171,7 @@ that you should read. The CNN trained for a few hours on MNIST, and for two days
 <h2 id="model-benchmarks-top-1">Model Benchmarks (Top 1)</h2>
 
 <div class="post-img">
-<img class="img-responsive img-post" src=" /blog//img/conv_stats.png" align="center" width="80%" height="80%" />
+<img class="img-responsive img-post" src=" /img/conv_stats.png" align="center" width="80%" height="80%" />
 </div>
 
 <p>As you can see, the convnet outpreforms every other model by a wide margin. This is because convnets encode features independant of their placement in the image. 
@@ -304,89 +244,21 @@ This tradeoff is further discussed <a href="https://github.com/neale/convnet/blo
 
 </section>
 
+        <nav>  
+          <ul class="elsewhere">
+            <li class="elsewhere__item"><a href="/">Home</a></li>
+            <li class="elsewhere__item"><a href="/blog">Deep Learning</a></li>
+            <li class="elsewhere__item"><a href="http://github.com/neale">GitHub</a></li>
+            <li class="elsewhere__item"><a href="https://www.linkedin.com/in/neale-ratzlaff-46879973/">LinkedIn</a></li>
+            <li class="elsewhere__item"><a href="http://neale.github.io/projects">Projects</a></li>
 
-
-
-    <section class="footer ">
-
-    <div class="row">
-
-        <div class="col-sm-offset-3 col-md-offset-3 col-md-6 text-center">
-            
-      <span>
-        <a class="header-link" href="https://github.com/neale" target="_blank">
-            <i class="fa fa-2x fa-github-square 3x"></i>
-        </a>
-      </span>
-            
-
-
-            
-
-            
-
-
-            
-      <span>
-        <a class="header-link" href="https://facebook.com/neale.ratzlaff"  target="_blank">
-            <i class="fa fa-2x fa-facebook-square "></i>
-        </a>
-      </span>
-            
-        </div>
-
-    </div>
+          </ul>
+        </nav>
  
-      <script type="text/javascript">
-    /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
-    var disqus_shortname = 'EnRatz'; // required: replace example with your forum shortname
+        </div><!-- /.inner-container -->
+      </div>  <!-- /.outer-container -->
+        </footer>
 
-    /* * * DON'T EDIT BELOW THIS LINE * * */
-    (function () {
-        var s = document.createElement('script'); s.async = true;
-        s.type = 'text/javascript';
-        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
-        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
-    }());
-    </script>
-
-
-</section>
-
-
-    </div>
-    <!-- Scripts -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="assets/js/jquery.js"><\/script>')</script>
-
-<!-- Add custom scripts here -->
-<!-- Bootstrap js -->
-<script type="text/javascript" src="/blog/js/bootstrap.min.js"></script>
-
-<!-- Parallax js -->
-<script type="text/javascript" src="/blog/jquery.localscroll-1.2.7-min.js"></script>
-<script type="text/javascript" src="/blog/jquery.parallax-1.1.3.js"></script>
-<script type="text/javascript" src="/blog/jquery.scrollTo-1.4.2-min.js"></script>
-<script src="/blog/js/snippet.js"></script>
-<!-- /end of parallax js -->
-
-
-
-<!-- Add your google analytics here -->
-<!-- Change the XXXXXXX section in your site id -->
-<script>
-    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-        e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-        e.src='//www.google-analytics.com/analytics.js';
-        r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-    ga('create','UA-XXXXX-X');ga('send','pageview');
-</script>
-
-	
-
-
-
-  </body>
+              </body>
 
 </html>
