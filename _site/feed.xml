@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-26T19:19:21-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">The Super Effectiveness of Convolutional Neural Nets</title><link href="http://localhost:4000/nn/2016/07/14/cifar-torch.html" rel="alternate" type="text/html" title="The Super Effectiveness of Convolutional Neural Nets" /><published>2016-07-14T16:25:05-07:00</published><updated>2016-07-14T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/14/cifar-torch</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/14/cifar-torch.html">&lt;!-- To --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-26T22:37:23-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">The Super Effectiveness of Convolutional Neural Nets</title><link href="http://localhost:4000/nn/2016/07/14/cifar-torch.html" rel="alternate" type="text/html" title="The Super Effectiveness of Convolutional Neural Nets" /><published>2016-07-14T16:25:05-07:00</published><updated>2016-07-14T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/14/cifar-torch</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/14/cifar-torch.html">&lt;!-- To --&gt;
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;  
@@ -434,7 +434,7 @@ greater measure of control over the memory of the RNN.&lt;/p&gt;
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /img/LSTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/LSTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
