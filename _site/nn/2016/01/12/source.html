@@ -6,7 +6,7 @@
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="shortcut icon" href="/public/images/top_icon.png">
           <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">
-          <link href="/public/post.css" rel="stylesheet">
+          <link href="/assets/css/post.css" rel="stylesheet">
           <link href="/assets/css/syntax.css" rel="stylesheet">
 
     </head>
@@ -36,9 +36,8 @@ thinks of my code. Mostly I was sure that the Linux and Torch sources were going
 
 <p>In order to cat all the files into one disgustingly long file I ran a simple bash line</p>
 
-<blockquote>
-  <p><code class="highlighter-rouge">find linux/ -name '*c' -exec cat {} \; &gt; ../linux.txt</code></p>
-</blockquote>
+<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code>find linux/ <span class="nt">-name</span> <span class="s1">'*c'</span> <span class="nt">-exec</span> <span class="nb">cat</span> <span class="o">{}</span> <span class="se">\;</span> <span class="o">&gt;</span> ../linux.txt
+</code></pre></div></div>
 
 <p>This file was a lot larger than the C.S. Lewis corpus, at 541MB and needed 50 days to train with a 6 layer LSTM. I didn’t want to wait that long so I cut the file down to 50MB and trained it from there. Here is some of the sampled code it generated. 
 This time I’m going to cherry pick the results because I think that’s more interesting. We already know these models aren’t perfect.</p>
@@ -85,24 +84,24 @@ they probably deserve a decent grade.</p>
                 <span class="n">cpu_none</span> <span class="o">=</span> <span class="n">jab_boot</span><span class="p">();</span>
         <span class="n">qeat_info</span><span class="o">-&gt;</span><span class="n">ia32</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
         <span class="k">if</span> <span class="p">(</span><span class="o">!</span><span class="n">__pstate_thread_flag</span> <span class="p">(</span><span class="o">&amp;</span><span class="p">(</span><span class="n">frame</span><span class="o">-&gt;</span><span class="n">dma_ptr</span><span class="p">)</span> <span class="o">==</span> <span class="mi">4</span><span class="p">))</span> <span class="p">{</span>
-                <span class="n">pr_info</span><span class="p">(</span><span class="s">"%s: */</span><span class="err">
-</span><span class="s">                pe_current_node = 0;</span><span class="err">
-</span><span class="s">        }</span><span class="err">
-</span><span class="s">        max = new_cache_page[ncriss_reading.cpu];</span><span class="err">
-</span><span class="s">        if (err &lt; 16) {</span><span class="err">
-</span><span class="s">                switch (ch) {</span><span class="err">
-</span><span class="s">                        case 1:</span><span class="err">
-</span><span class="s">                        break;</span><span class="err">
-</span><span class="s">                }</span><span class="err">
-</span><span class="s">        }</span><span class="err">
-</span><span class="s">        __flush_icache_range(lan, highol.etbys);</span><span class="err">
-</span><span class="s">        __raw_writel(1, regs-&gt;lan, current-&gt;internal);</span><span class="err">
-</span><span class="s">        spin_lock_irqsave(&amp;cpu);</span><span class="err">
-</span><span class="s">        xcmp_init(&amp;bv-&gt;setups);</span><span class="err">
-</span><span class="s">}</span><span class="err">
+                <span class="n">pr_info</span><span class="p">(</span><span class="s">"%s: */"</span><span class="p">)</span>
+                <span class="n">pe_current_node</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+        <span class="p">}</span>
+        <span class="n">max</span> <span class="o">=</span> <span class="n">new_cache_page</span><span class="p">[</span><span class="n">ncriss_reading</span><span class="p">.</span><span class="n">cpu</span><span class="p">];</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">err</span> <span class="o">&lt;</span> <span class="mi">16</span><span class="p">)</span> <span class="p">{</span>
+                <span class="k">switch</span> <span class="p">(</span><span class="n">ch</span><span class="p">)</span> <span class="p">{</span>
+                        <span class="k">case</span> <span class="mi">1</span><span class="p">:</span>
+                        <span class="k">break</span><span class="p">;</span>
+                <span class="p">}</span>
+        <span class="p">}</span>
+        <span class="n">__flush_icache_range</span><span class="p">(</span><span class="n">lan</span><span class="p">,</span> <span class="n">highol</span><span class="p">.</span><span class="n">etbys</span><span class="p">);</span>
+        <span class="n">__raw_writel</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">regs</span><span class="o">-&gt;</span><span class="n">lan</span><span class="p">,</span> <span class="n">current</span><span class="o">-&gt;</span><span class="n">internal</span><span class="p">);</span>
+        <span class="n">spin_lock_irqsave</span><span class="p">(</span><span class="o">&amp;</span><span class="n">cpu</span><span class="p">);</span>
+        <span class="n">xcmp_init</span><span class="p">(</span><span class="o">&amp;</span><span class="n">bv</span><span class="o">-&gt;</span><span class="n">setups</span><span class="p">);</span>
+<span class="p">}</span>
 
 
-</span></code></pre></div></div>
+</code></pre></div></div>
 
 <p>I saved the best for last, this was the best piece of code that the network generated in my 5000 character sample. In this one function, it uses <code class="highlighter-rouge">case</code>, 
 single line if statements, <code class="highlighter-rouge">struct.</code> and <code class="highlighter-rouge">&amp;struct-&gt;</code>, and functions that take none to many arguments.</p>
@@ -122,30 +121,30 @@ The resulting text file was ~2MB so I figured it was good to go. Here’s some o
 <div class="language-lua highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
 <span class="k">function</span> <span class="nf">LSTM</span><span class="p">:</span><span class="n">__init</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
    <span class="k">end</span>
-   <span class="nb">assert</span><span class="p">(</span><span class="n">step</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"set '] then
-      self:recursiveCopy(self.outputSize, t1)
-   end
+   <span class="nb">assert</span><span class="p">(</span><span class="n">step</span> <span class="o">&gt;=</span> <span class="mi">1</span><span class="p">,</span> <span class="s2">"set "</span><span class="p">]</span> <span class="k">then</span>
+      <span class="n">self</span><span class="p">:</span><span class="n">recursiveCopy</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">outputSize</span><span class="p">,</span> <span class="n">t1</span><span class="p">)</span>
+   <span class="k">end</span>
 
-   -- get the it  convertis sequencen the input to return and (targets through forward for layers
+   <span class="c1">-- get the it  convertis sequencen the input to return and (targets through forward for layers</span>
    
-   self._sequence[self.step-1] = torch.dim() do
-      -- Uoth initialModule
-      self.step = 1
-      assert(torch.type(checkSums.localSumh == next_c)) 
-      self._gradOutput = self.initialModule or torch.LongStorage(self.inputSize, output:size(2))
-      if table.insert(self.modules[1] rho &lt;= 1) and nStep &gt;= 'both' then
-         self.bias:=4:clone(), self.bwdSeq)
-      return self
-end
+   <span class="n">self</span><span class="p">.</span><span class="n">_sequence</span><span class="p">[</span><span class="n">self</span><span class="p">.</span><span class="n">step</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">dim</span><span class="p">()</span> <span class="k">do</span>
+      <span class="c1">-- Uoth initialModule</span>
+      <span class="n">self</span><span class="p">.</span><span class="n">step</span> <span class="o">=</span> <span class="mi">1</span>
+      <span class="nb">assert</span><span class="p">(</span><span class="n">torch</span><span class="p">.</span><span class="n">type</span><span class="p">(</span><span class="n">checkSums</span><span class="p">.</span><span class="n">localSumh</span> <span class="o">==</span> <span class="n">next_c</span><span class="p">))</span> 
+      <span class="n">self</span><span class="p">.</span><span class="n">_gradOutput</span> <span class="o">=</span> <span class="n">self</span><span class="p">.</span><span class="n">initialModule</span> <span class="ow">or</span> <span class="n">torch</span><span class="p">.</span><span class="n">LongStorage</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">inputSize</span><span class="p">,</span> <span class="n">output</span><span class="p">:</span><span class="n">size</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+      <span class="k">if</span> <span class="nb">table.insert</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">modules</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="n">rho</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">)</span> <span class="ow">and</span> <span class="n">nStep</span> <span class="o">&gt;=</span> <span class="s1">'both'</span> <span class="k">then</span>
+         <span class="n">self</span><span class="p">.</span><span class="n">bias</span><span class="p">:</span><span class="o">=</span><span class="mi">4</span><span class="p">:</span><span class="n">clone</span><span class="p">(),</span> <span class="n">self</span><span class="p">.</span><span class="n">bwdSeq</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">self</span>
+<span class="k">end</span>
 
-</span></code></pre></div></div>
+</code></pre></div></div>
 
 <blockquote>
-  <p>wow, the LSTM is writing an LSTM. Is that cannibalism, or asexual reproduction?</p>
+  <p>LSTM writing a LSTM.</p>
 </blockquote>
 
-<p>It even got the commments right, but they’re a little funky since the network doesn’t have any language reference, just source code. 
-So all it knows how to talk about is networks, which probably works.</p>
+<p>It even has the commments right, but they’re a little funky since the network doesn’t have any language reference, just source code. 
+So all it knows how to talk about is networks, which wors fine for this demo.</p>
 
 <p>I was particularly impressed by this bit, it closes parentheses well and it even got the dot operator right.</p>
 
@@ -175,9 +174,6 @@ The generated text would be way more convoluted if the source wasn’t consistan
 <span class="k">end</span>
 
 </code></pre></div></div>
-
-<p>Next I just need to train the RNN on my own code, this is going to be the most humbling experience of my programming life.</p>
-
 
        </p>
 
