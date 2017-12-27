@@ -279,7 +279,8 @@ dd {
 menu,
 ol,
 ul {
-  padding: 0 0 0 40px;
+  padding: 0 0 0 0px;
+  font-size: 16pt;
 }
 
 /**
@@ -565,7 +566,7 @@ a:hover, a:focus {
 }
 
 .elsewhere {
-  font-size: 16px;
+  font-size: 20px;
   list-style-type: none;
   padding: 0;
 }
