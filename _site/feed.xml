@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-27T15:50:27-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">The Super Effectiveness of Convolutional Neural Nets</title><link href="http://localhost:4000/nn/2016/07/14/cifar-torch.html" rel="alternate" type="text/html" title="The Super Effectiveness of Convolutional Neural Nets" /><published>2016-07-14T16:25:05-07:00</published><updated>2016-07-14T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/14/cifar-torch</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/14/cifar-torch.html">&lt;!-- To --&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-27T15:55:37-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">The Super Effectiveness of Convolutional Neural Nets</title><link href="http://localhost:4000/nn/2016/07/14/cifar-torch.html" rel="alternate" type="text/html" title="The Super Effectiveness of Convolutional Neural Nets" /><published>2016-07-14T16:25:05-07:00</published><updated>2016-07-14T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/14/cifar-torch</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/14/cifar-torch.html">&lt;!-- To --&gt;
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;  
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /img/synapse.jpeg &quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/synapse.jpeg &quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -82,7 +82,7 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /img/conv_architectures.png&quot; width=&quot;600&quot; height=&quot;1400&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/conv_architectures.png&quot; width=&quot;600&quot; height=&quot;1400&quot; /&gt;
 &lt;/p&gt;
 
 &lt;/div&gt;
@@ -148,7 +148,7 @@ that you should read. The CNN trained for a few hours on MNIST, and for two days
 &lt;h2 id=&quot;model-benchmarks-top-1&quot;&gt;Model Benchmarks (Top 1)&lt;/h2&gt;
 
 &lt;div class=&quot;post-img&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /img/conv_stats.png&quot; align=&quot;center&quot; width=&quot;80%&quot; height=&quot;80%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/conv_stats.png&quot; align=&quot;center&quot; width=&quot;80%&quot; height=&quot;80%&quot; /&gt;
 &lt;/div&gt;
 
 &lt;p&gt;As you can see, the convnet outpreforms every other model by a wide margin. This is because convnets encode features independant of their placement in the image. 

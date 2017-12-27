@@ -13,7 +13,7 @@ image: true
 {% if page.image %}
 <div class="post-img">
 <p align="center">  
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/synapse.jpeg "/>
+<img class="img-responsive img-post" src=" {{site.baseurl}}/public/images/synapse.jpeg "/>
 </p>
 </div>
 {% endif %}
@@ -102,7 +102,7 @@ lightly regularized, while the deeper net was a VGG16-style net which was heavil
 {% if page.image %}
 <div class="post-img">
 <p align="center">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_architectures.png" width="600" height="1400" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/public/images/conv_architectures.png" width="600" height="1400" />
 </p>
 
 </div>
@@ -172,7 +172,7 @@ Models were trained and tested the same system
 {% if page.image %}
 
 <div class="post-img">
-<img class="img-responsive img-post" src=" {{site.baseurl}}/img/conv_stats.png" align="center" width="80%" height="80%" />
+<img class="img-responsive img-post" src=" {{site.baseurl}}/public/images/conv_stats.png" align="center" width="80%" height="80%" />
 </div>
 {% endif %}
 
