@@ -30,11 +30,13 @@
             <p> I try to post as frequently as possible, its massively helpful to me as a researcher. I hope its also helpful to you.</p>
         <div class="inner-container"> 
 
-            {% for post in site.posts %}  
-            <h3><a href="{{ post.url }}">{{ post.title }}</a></h3>
-            <p><small><strong>{{ post.date | date: "%B %e, %Y" }}</strong> . {{ post.category }} . 
-                <a href="http://neale.github.com{{ post.url }}#disqus_thread"></a></small></p>                    
-            {% endfor %}    
+        <h1>{{ page.title }}</h1>
+        <ul class="posts">
+
+          {% for post in site.posts %}
+            <li><span>{{ post.date | date_to_string }}</span> » <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a></li>
+          {% endfor %}
+        </ul>
         
         </div>
     </div>
