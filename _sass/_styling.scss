@@ -2,11 +2,39 @@ body {
   background: $yellowish-white;
   color: $yellowish-black;
   text-shadow: 1px 1px 1px #fff;
-  font: 300 22px/1.5 "Source Sans Pro", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
+  font-size: 100%
+}
+
+.post-text {
+  &, &:visited {
+    color: $gray-indigo;
+    text-decoration: none;
+    font-size: 1em;
+  }
+  &:hover, &:focus {
+    color: $gray-indigo;
+    border-bottom: 1px solid $gray-indigo;
+    font-size: 1em;
+  }
+}
+
+.landing-link {
+  &, &:visited {
+    color: $gray-indigo;
+    text-decoration: none;
+    font-size: 1.05em;
+  }
+ &:hover, &:focus {
+    color: $gray-indigo;
+    border-bottom: 1px solid $gray-indigo;
+    font-size: 1.05em;
+  }
 }
 
 a, b {
   font-weight: 400;
+  font-size: 1.05em; 
 }
 
 a {
@@ -32,13 +60,37 @@ a {
   height: 242px;
 }
 
-.elsewhere {
+.site-header {
   font-size: 20px;
   list-style-type: none;
   padding: 0;
+  border-bottom: 1px solid #e1e4e8;
+  margin: 0 0 48px;
+  position: relative;
 
-  &__item {
-    display: inline;
-    margin: 0 10px;
+}
+
+.site-header nav ul {
+  list-style: none;
+  margin: 0 auto;
+  width: 530px;
+  display: flex;
+  justify-content: center;
+}
+
+.header-links {
+  &, &:visited {
+    color: $turquoise;
+    text-decoration: none;
+    margin: 15px;
+    display: block;
+    border-bottom: 0px;
+  }
+
+  &:hover, &:focus {
+    color: $dark-turquoise;
+    border-color: $dark-gray;
   }
 }
+
+

@@ -4,28 +4,29 @@
       <meta charset="utf-8">
           <title>{{ page.title }}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="shortcut icon" href="/public/images/top_icon.png">
-          <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">
+          <link rel="shortcut icon" href="/assets/images/top_icon.png">
+          <!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">-->
+          <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,400" rel="stylesheet" type="text/css">
           <link href="/assets/css/post.css" rel="stylesheet">
           <link href="/assets/css/syntax.css" rel="stylesheet">
 
     </head>
     <body>
         <div class="outer-container">
-        <nav>  
-          <ul class="elsewhere">
-            <li class="elsewhere__item"><a href="/">Home</a></li>
-            <li class="elsewhere__item"><a href="/blog">Deep Learning</a></li>
-            <li class="elsewhere__item"><a href="http://github.com/neale">GitHub</a></li>
-            <li class="elsewhere__item"><a href="https://www.linkedin.com/in/neale-ratzlaff-46879973/">LinkedIn</a></li>
-            <li class="elsewhere__item"><a href="http://neale.github.io/projects">Projects</a></li>
-
-          </ul>
-        </nav>
- 
             <div class="inner-container">
+              <header class="site-header">
+                <nav id="nav-toggle">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/" class="header-links">Home</a><li>
+                    <li><a href="/blog" class="header-links">Deep Learning</a></li>
+                    <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
+                    <li><a href="http://neale.github.io/projects" class="header-links">Projects</a></li>
+                  </ul>
+                </nav>
+              </header>
+       
  
-            {{ content }}
+              {{ content }}
 
         </div><!-- /.inner-container -->
       </div>  <!-- /.outer-container -->

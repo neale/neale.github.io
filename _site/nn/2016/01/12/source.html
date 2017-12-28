@@ -4,28 +4,29 @@
       <meta charset="utf-8">
           <title>Generating code with character level RNNs </title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
-          <link rel="shortcut icon" href="/public/images/top_icon.png">
-          <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">
+          <link rel="shortcut icon" href="/assets/images/top_icon.png">
+          <!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">-->
+          <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,400" rel="stylesheet" type="text/css">
           <link href="/assets/css/post.css" rel="stylesheet">
           <link href="/assets/css/syntax.css" rel="stylesheet">
 
     </head>
     <body>
         <div class="outer-container">
-        <nav>  
-          <ul class="elsewhere">
-            <li class="elsewhere__item"><a href="/">Home</a></li>
-            <li class="elsewhere__item"><a href="/blog">Deep Learning</a></li>
-            <li class="elsewhere__item"><a href="http://github.com/neale">GitHub</a></li>
-            <li class="elsewhere__item"><a href="https://www.linkedin.com/in/neale-ratzlaff-46879973/">LinkedIn</a></li>
-            <li class="elsewhere__item"><a href="http://neale.github.io/projects">Projects</a></li>
-
-          </ul>
-        </nav>
- 
             <div class="inner-container">
+              <header class="site-header">
+                <nav id="nav-toggle">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/" class="header-links">Home</a><li>
+                    <li><a href="/blog" class="header-links">Deep Learning</a></li>
+                    <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
+                    <li><a href="http://neale.github.io/projects" class="header-links">Projects</a></li>
+                  </ul>
+                </nav>
+              </header>
+       
  
-              <!--start of the post title-->
+                <!--start of the post title-->
     <section class="single-post-title-main">
         <h2>Generating code with character level RNNs </h2>
     </section>
@@ -115,7 +116,7 @@ they probably deserve a decent grade.</p>
 </code></pre></div></div>
 
 <p>I saved the best for last, this was the best piece of code that the network generated in my 5000 character sample. In this one function, it uses <code class="highlighter-rouge">case</code>, 
-single line if statements, <code class="highlighter-rouge">struct.</code> and <code class="highlighter-rouge">&amp;struct-&gt;</code>, and functions that take none to many arguments.</p>
+single line if statements, <em>struct</em> and <em>&amp;struct-&gt;</em>, and functions that take none to many arguments.</p>
 
 <p>C is a very structured lanuage, so there were larger, more obvoius features for the RNN to pick out which I think helped its training. 
 Higher level languages would have more trouble since the interpreter does so much of the heavy lifting. That sounds like a challenge, so lets not just tackle another language. 

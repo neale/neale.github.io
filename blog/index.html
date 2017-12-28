@@ -1,5 +1,5 @@
 ---
-layout: default
+layout: list_page
 title: Blog
 ---
         <h1>{{ page.title }}</h1>
@@ -8,7 +8,7 @@ title: Blog
           {% for post in site.posts %}
           <span>{{ post.date | date: '%B  %Y' }}</span> 
             <p>
-              <a href="{{ post.url }}" title="{{ post.title }}">{{ post.title }}</a>
+              <a href="{{ post.url }}" class="post-text" title="{{ post.title }}">{{ post.title }}</a>
             </p>
           
           {% endfor %}

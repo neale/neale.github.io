@@ -2,7 +2,7 @@
 <html>
     <head>
       <meta charset="utf-8">
-          <title>Blog</title>
+          <title>{{ page.title }}</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="shortcut icon" href="/assets/images/top_icon.png">
           <!--<link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">-->
@@ -26,24 +26,7 @@
  
             <div class="list-container">
  
-                    <h1>Blog</h1>
-        <ul class="posts">
-
-          
-          <span>January  2016</span> 
-            <p>
-              <a href="/nn/2016/01/12/source.html" class="post-text" title="Generating code with character level RNNs ">Generating code with character level RNNs </a>
-            </p>
-          
-          
-          <span>January  2015</span> 
-            <p>
-              <a href="/nn/2015/01/12/Lewis.html" class="post-text" title="Narnia With Character Level Recurrant Neural Networks">Narnia With Character Level Recurrant Neural Networks</a>
-            </p>
-          
-          
-        </ul>
-
+            {{ content }}
 
         </div><!-- /.list-container -->
       </div>  <!-- /.outer-container -->

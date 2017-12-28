@@ -1,219 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-27T15:55:37-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">The Super Effectiveness of Convolutional Neural Nets</title><link href="http://localhost:4000/nn/2016/07/14/cifar-torch.html" rel="alternate" type="text/html" title="The Super Effectiveness of Convolutional Neural Nets" /><published>2016-07-14T16:25:05-07:00</published><updated>2016-07-14T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/14/cifar-torch</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/14/cifar-torch.html">&lt;!-- To --&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-&lt;p align=&quot;center&quot;&gt;  
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/synapse.jpeg &quot; /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;h1 id=&quot;prologue&quot;&gt;Prologue&lt;/h1&gt;
-
-&lt;p&gt;Neural networks have become so pervasive in the machine learning community that I began to wonder if they were really worth all the hype. There are daily publications on arXiv
-and on Hacker News about new deep learning techniques and new architectures. Many of these are grad students applying neural networks to a job that doesn’t need their 
-special sauce. But there are two areas in particular where neural nets have provided such a boost in ability, that its not even fair to compare them to conventional 
-machine learning models: object recognition and natural language processing. Object recognition in particular exploded the field of deep learning when Alex Krizhevsky 
-trounced the competition at ILSVRC of 2012. Alexnet was an 8 layer convolutional neural network that achieved over 20% better top-5 error on imagenet than the next leading entry. 
-This is the equivilant of a toddler competing against a slightly senile old man. It may not seem like a lot, but this advancement was unprecedented and lit a fire of 
-research in the computer vision community.&lt;/p&gt;
-
-&lt;p&gt;For my machine learning class in my undergrad I implemented a CNN in Torch and compared it to standard image recognition techniques like Nearest Neighbor clustering and Kernel SVMs. 
-I compared the models on the cifar-10 and MNIST datasets. MNIST is a dataset of 60000 images, each of a handwritten digit 0-9. The images are sized 32x32 binary pixels, for a total of 1024 
-dimensions. In terms of images this is extremely low dimensional data and makes for a simple, small model. Cifar-10 however, contains RGB images of 10 classes of objects, shown in 
-different scales, translations, and rotations. Cifar images have 3072 dimensions, but there are far more latent features contained that need to be extracted. Recognizing airplaces 
-in multiple different positions requires a different approach than being able to differentiate different binary images of digits.&lt;/p&gt;
-
-&lt;h2 id=&quot;models&quot;&gt;Models&lt;/h2&gt;
-
-&lt;p&gt;For MNIST here is the code that I used to generate a fast implementation of a feed forward neural network and a Nearest Neighbor classifier in python and scikit-learn. 
-I made these models small because I had a hunch that a simple algorithmm would all that would be required to classify the digits correctly.&lt;/p&gt;
-
-&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;load_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;():&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fetch_mldata&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;'MNIST original'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;data&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;/&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;255.&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mnist&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;target&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[:&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;],&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;60000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:]&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y_test&lt;/span&gt;
-
-&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;build_clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;
-  &lt;span class=&quot;s&quot;&gt;&quot;&quot;&quot;build any classifier that implements a fit method with
-  given parameters&quot;&quot;&quot;&lt;/span&gt;
-
-  &lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf_class&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;kwargs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;clf_fit&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;fit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;y&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;clf_fit&lt;/span&gt;
-
-
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;__name__&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'__main__'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_test&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;load_data&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;KNN_hyperparams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'n_neighbors'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;9&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'n_jobs'&lt;/span&gt;      &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'algorithm'&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'auto'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'p'&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'leaf_size'&lt;/span&gt;   &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;MLP_hyperparams&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'hidden_layer_sizes'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;4&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'activation'&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'relu'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'algorithm'&lt;/span&gt;          &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'sgd'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'batch_size'&lt;/span&gt;         &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;'auto'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'alpha'&lt;/span&gt;              &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mf&quot;&gt;0.01&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'max_iter'&lt;/span&gt;           &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;500&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
-      &lt;span class=&quot;s&quot;&gt;'verbose'&lt;/span&gt;            &lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;bp&quot;&gt;True&lt;/span&gt;
-  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;building KNN&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;knn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build_clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;KNN&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;KNN_hyperparams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;KNN Training set score: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;knn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;KNN Test set score: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;knn&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;building MLP&quot;&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;mlp&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;build_clf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;MLPClassifier&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MLP_hyperparams&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MLP 1 Training set score: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mlp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_train&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;print&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;MLP 1 Test set score: &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;f&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;mlp&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;score&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;X_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Y_test&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;The rest of the code can be found &lt;a href=&quot;https://github.com/neale/ConvNet/blob/master/linearClassifier/KNN_MLP.py&quot;&gt;here&lt;/a&gt; if you want to implement it yourself.
-The neural network took 30 minutes to converge, running on a NVIDIA GTX 970. From there it could do a forward and backward pass in 50+ ms to classify an example. 
-If all of this is gibberish you should read my &lt;a href=&quot;http://neale.github.io&quot;&gt;simplified neural network&lt;/a&gt; post. Both models preformed better than 95%, which is what is expected of human
-participants in an equivilant task.&lt;/p&gt;
-
-&lt;p&gt;The Convnets I used were of two different architectures, a small one for MNIST and a deeper network for cifar-10. The MNIST convnet had few weights (60k) and was 
-lightly regularized, while the deeper net was a VGG16-style net which was heavily regularized with 16 layers. Here are the presented architectures for both of the convnets&lt;/p&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/conv_architectures.png&quot; width=&quot;600&quot; height=&quot;1400&quot; /&gt;
-&lt;/p&gt;
-
-&lt;/div&gt;
-
-&lt;p&gt;For both architectures I used small convolutional filters to minimize parameter growth in such a deep network
-if you want to know more details about the architecture I have a research paper posted &lt;a href=&quot;http://github.com/neale/convnet/blob/master/effect-model-complexity.pdf&quot;&gt;here&lt;/a&gt;
-that you should read. The CNN trained for a few hours on MNIST, and for two days on cifar-10 until it finally converged. The results were well worth the wait.&lt;/p&gt;
-
-&lt;p&gt;Here is the larger Convnet model that I used to classify cifar-10, written in torch&lt;/p&gt;
-
-&lt;div class=&quot;language-lua highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;
-&lt;span class=&quot;kd&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sequential&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;-- building block conv layer function&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;-- One conv layer with a ReLU, &lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;-- Maybe try and optimize with a leaky ReLU to prevent dead neurons &lt;/span&gt;
-
-&lt;span class=&quot;kd&quot;&gt;local&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;ConvReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nInputPlane&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nOutputPlane&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;SpatialConvolution&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nInputPlane&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nOutputPlane&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-  &lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;-- heavy regularization with a .6 dropout probability&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;ConvReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dropout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ConvReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dropout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;6&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;ConvReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;MaxPooling&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;):&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ceil&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;vgg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;View&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-
-&lt;span class=&quot;c1&quot;&gt;-- terminate the conv network with a fully connected neural network&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;-- linear FC units act as a classifier, to consolidate the conv-feature maps into 10 classes&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;-- final softmax to generate negative log probabilities for each class&lt;/span&gt;
-
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Sequential&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dropout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Linear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;ReLU&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Dropout&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;nn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;Linear&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;512&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;clr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;add&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;criterion&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;LogSoftmax&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;())&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-
-&lt;p&gt;Here are the model results from the benchmarks I ran:&lt;/p&gt;
-
-&lt;h2 id=&quot;testing-configuration&quot;&gt;Testing Configuration&lt;/h2&gt;
-
-&lt;p&gt;Models were trained and tested the same system&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;
-    &lt;p&gt;i7 6700K&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;GTX 970&lt;/p&gt;
-  &lt;/li&gt;
-  &lt;li&gt;
-    &lt;p&gt;32GB DDR4&lt;/p&gt;
-  &lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h2 id=&quot;model-benchmarks-top-1&quot;&gt;Model Benchmarks (Top 1)&lt;/h2&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/conv_stats.png&quot; align=&quot;center&quot; width=&quot;80%&quot; height=&quot;80%&quot; /&gt;
-&lt;/div&gt;
-
-&lt;p&gt;As you can see, the convnet outpreforms every other model by a wide margin. This is because convnets encode features independant of their placement in the image. 
-This allows us to train these models end to end without a object detection layer. If the feature is present, the convnet will find it no matter how the feature is translated or rotated.&lt;/p&gt;
-
-&lt;p&gt;CNNs are more effective than any other model in terms of classification speed (a single forward and backward pass can be as low as 50ms), and raw accuracy. But CNNs take much more data and much longer to train than other algorithms. 
-This tradeoff is further discussed &lt;a href=&quot;https://github.com/neale/convnet/blob/master/effect-model-complexity.pdf&quot;&gt;in this paper&lt;/a&gt;&lt;/p&gt;
-
-&lt;h3 id=&quot;references&quot;&gt;References:&lt;/h3&gt;
-
-&lt;p&gt;[1] &lt;a href=&quot;http://torch.ch/docs/package-docs.html&quot;&gt;torch&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;[2] &lt;a href=&quot;http://cs231n.github.io/&quot;&gt;Andrej karpathy’s CS231n class&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;[3] &lt;a href=&quot;https://www.cs.toronto.edu/~kriz/cifar.html&quot;&gt;cifar-10&lt;/a&gt;&lt;/p&gt;
-
-&lt;p&gt;[4] &lt;a href=&quot;http://yann.lecun.com/exdb/mnist/&quot;&gt;MNIST&lt;/a&gt;&lt;/p&gt;</content><author><name></name></author><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/true" /></entry><entry><title type="html">Ultra Deep Networks</title><link href="http://localhost:4000/nn/2016/07/12/resnets.html" rel="alternate" type="text/html" title="Ultra Deep Networks" /><published>2016-07-12T16:25:05-07:00</published><updated>2016-07-12T16:25:05-07:00</updated><id>http://localhost:4000/nn/2016/07/12/resnets</id><content type="html" xml:base="http://localhost:4000/nn/2016/07/12/resnets.html">&lt;!-- buffer --&gt;
-
-&lt;h1 id=&quot;all-about-resnets&quot;&gt;All About ResNets&lt;/h1&gt;
-
-&lt;p&gt;I’ve been wanting to write a post about resnets for some time. They seem like the coolest thing to come out in the last year (I’m looking at you deep compression). 
-Resnets are the brain child of Microsoft Research Asia, and they swpet not just ILSVRC 2015, but also MS COCO, Both of which are difficult datasets with lots of competition. 
-The most interesting part about resnets is that they were implemented as CNNs with huge depth. Where before a very deep network would look like Google’s Inception or VGGnet with 15-20+
-layers before threshholding accuracy. Resnets were implemented successfully with 152 layer nets, I encourage you to &lt;a href=&quot;https://arxiv.org/abs/1512.03385&quot;&gt;read the paper&lt;/a&gt; for a primer. 
-Microsoft achieved a 6.7% top 5 error rate on Imagenet, which should sit right around human performance. These results were passed recently by facebook’s torch implementation where
-they took the model to 200 layers and still saw an increase in accuracy beyond MSRA.&lt;/p&gt;
-
-&lt;h2 id=&quot;facebooks-resnet&quot;&gt;Facebook’s ResNet&lt;/h2&gt;
-
-&lt;p&gt;Facebook recently implemented ResNet and improved on the results presented in the original paper. They open sourced their implementation and uploaded the weights for 
-all of their models. Since training a ResNet with your own machine would take weeks, downloading the pretrained weights would be the way to go. So if all you want to do is 
-plug the model into an existing framework, then head over to their &lt;a href=&quot;https://github.com/facebook/fb.resnet.torch&quot;&gt;github repo&lt;/a&gt;&lt;/p&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/facebook_resnet_results.png &quot; width=&quot;40%&quot; height=&quot;40%&quot; align=&quot;middle&quot; /&gt;
-&lt;/div&gt;
-
-&lt;h3 id=&quot;a-short-history-of-neural-nets&quot;&gt;A Short History of Neural Nets&lt;/h3&gt;
-
-&lt;p&gt;Before going into the details of ResNet, lets look why we even want to make them deeper. 
-When the first neural network’s began as perceptrons back in the 60s. They largely consisted of an input layer, an output layer, and a single hidden layer. 
-The input function (WtX + b) was applied to an activation (usually a heaviside or logit function), and the parameters were updated via gradient descent. 
-This framed learning as a convex optimization problem and allowed the perceptron to approximate complex functions by finding the bottoms of the error hyperparaboloid. 
-This is great, except that they didn’t work very well, the gradients got all mashed up and either exploded to infinity, or were killed.  So time passed 
-and Geoffery Hinton figured out weight initializations, and the community got used to using backpropogation to train these models.  When CNNs became popular in &lt;a href=&quot;https://papers.nips.cc/paper/4824-imagenet-classification-with-deep-&quot;&gt;2012&lt;/a&gt;,
-The idea started that deeper nets are able to reason about their input at a higher level than shallow nets. If you think of CNNs as machines that build a hierarchy of 
-feature maps with each hidden layer, then heuristically you can reason that a deeper net can learn more abstract features.&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Note : This isn’t strictly true, a shallow net can learn any function as well as a deep net, but deep nets can be better optimized with fewer parameters. 
-Microsoft has a good &lt;a href=&quot;https://arxiv.org/pdf/1312.6184.pdf&quot;&gt;paper&lt;/a&gt; on how shallow nets are just as good if not better than deep nets.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/MLP.jpg &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
-&lt;/p&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;post-img&quot;&gt;
-&lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/DNN.png &quot; width=&quot;60%&quot; height=&quot;60%&quot; /&gt;
-&lt;/p&gt;
-&lt;/div&gt;</content><author><name></name></author><summary type="html"></summary><media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://localhost:4000/true" /></entry><entry><title type="html">Generating code with character level RNNs</title><link href="http://localhost:4000/nn/2016/01/12/source.html" rel="alternate" type="text/html" title="Generating code with character level RNNs " /><published>2016-01-12T15:25:05-08:00</published><updated>2016-01-12T15:25:05-08:00</updated><id>http://localhost:4000/nn/2016/01/12/source</id><content type="html" xml:base="http://localhost:4000/nn/2016/01/12/source.html">&lt;!--To start off this **Blog** I thought I would give a history of where Ive been on my short ourney so for, starting with my first encounter with a neural net. A year or so ago I came across an npm package called Synaptic which gives some functions for defining the behavior of artificial neurons.--&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="3.6.2">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" /><updated>2017-12-28T15:20:26-08:00</updated><id>http://localhost:4000/</id><title type="html">neale.github.io</title><subtitle>unfinished</subtitle><entry><title type="html">Generating code with character level RNNs</title><link href="http://localhost:4000/nn/2016/01/12/source.html" rel="alternate" type="text/html" title="Generating code with character level RNNs " /><published>2016-01-12T15:25:05-08:00</published><updated>2016-01-12T15:25:05-08:00</updated><id>http://localhost:4000/nn/2016/01/12/source</id><content type="html" xml:base="http://localhost:4000/nn/2016/01/12/source.html">&lt;!--To start off this **Blog** I thought I would give a history of where Ive been on my short ourney so for, starting with my first encounter with a neural net. A year or so ago I came across an npm package called Synaptic which gives some functions for defining the behavior of artificial neurons.--&gt;
 
 &lt;p&gt;Well I said I was going to source code with my character RNN and last weekend I did just that. I grabbed the largest open source programs I could find. 
 Obviously I took the linux kernel, and then I thought it would be interesting to see what a neural network thought of itself. So I concatonated the Torch source 
@@ -294,7 +79,7 @@ they probably deserve a decent grade.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;I saved the best for last, this was the best piece of code that the network generated in my 5000 character sample. In this one function, it uses &lt;code class=&quot;highlighter-rouge&quot;&gt;case&lt;/code&gt;, 
-single line if statements, &lt;code class=&quot;highlighter-rouge&quot;&gt;struct.&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;amp;struct-&amp;gt;&lt;/code&gt;, and functions that take none to many arguments.&lt;/p&gt;
+single line if statements, &lt;em&gt;struct&lt;/em&gt; and &lt;em&gt;&amp;amp;struct-&amp;gt;&lt;/em&gt;, and functions that take none to many arguments.&lt;/p&gt;
 
 &lt;p&gt;C is a very structured lanuage, so there were larger, more obvoius features for the RNN to pick out which I think helped its training. 
 Higher level languages would have more trouble since the interpreter does so much of the heavy lifting. That sounds like a challenge, so lets not just tackle another language. 
@@ -385,7 +170,7 @@ while vanilla nets only exist to answer a heavily formulated and constrained que
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/RNN_basic.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /assets/images/RNN_basic.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -405,7 +190,7 @@ a Neural Turing Machine (RNN) can develop the black boxed algorithm that transfo
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/NTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /assets/images/NTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -431,7 +216,7 @@ greater measure of control over the memory of the RNN.&lt;/p&gt;
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/LSTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /assets/images/LSTM.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -454,7 +239,7 @@ find a minima of your manifold and train your network. The problem was that this
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/backpass.png.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /assets/images/backpass.png.png &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
@@ -464,7 +249,7 @@ find a minima of your manifold and train your network. The problem was that this
 
 &lt;div class=&quot;post-img&quot;&gt;
 &lt;p align=&quot;center&quot;&gt;
-&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /public/images/backprop_eq.gif &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
+&lt;img class=&quot;img-responsive img-post&quot; src=&quot; /assets/images/backprop_eq.gif &quot; align=&quot;middle&quot; width=&quot;40%&quot; height=&quot;40%&quot; /&gt;
 &lt;/p&gt;
 &lt;/div&gt;
 
