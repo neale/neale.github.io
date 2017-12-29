@@ -24,6 +24,14 @@ body {
   max-height: 100%;
 }
 
+@media screen and (max-width: 800px) {
+  .outer-container {
+    max-width: 100%;
+    margin: 0 auto;
+    max-height: 100%;
+  }
+}
+
 .inner-container {
   // Serves to
   //   1. distance us from the top of the viewport if it's not tall enough to vertically center
