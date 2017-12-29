@@ -334,6 +334,14 @@ img {
     -ms-interpolation-mode: bicubic; /* 2 */
 }
 
+@media screen and (max-width: 800px) {
+  img {
+      border: 0; /* 1 */
+      justify-content: center; 
+      -ms-interpolation-mode: bicubic; /* 2 */
+  }
+}
+
 /**
  * Correct overflow displayed oddly in IE 9.
  */
