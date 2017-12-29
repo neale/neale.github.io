@@ -7,7 +7,7 @@
  *    IE on Windows Phone and in iOS.
  */
 html {
-  line-height: 1.15;
+  line-height: 1.6;
   /* 1 */
   -ms-text-size-adjust: 100%;
   /* 2 */
@@ -97,6 +97,7 @@ pre {
  */
 ul {
   list-style-type: none;
+  padding: 0;
 }
 
 li {
