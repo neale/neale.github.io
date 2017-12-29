@@ -205,6 +205,7 @@ a:hover, a:focus {
   .site-header nav ul {
     list-style: none;
     margin: 0 auto;
+    padding: 0;
     width: 530px;
     display: flex;
     justify-content: center;
@@ -242,6 +243,11 @@ a:hover, a:focus {
   }
 
   .site-header nav ul {
+    display: none;
+  }
+}
+@media screen and (min-width: 800px) {
+  .mobile-header {
     display: none;
   }
 }
