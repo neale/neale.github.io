@@ -99,6 +99,13 @@ pre {
  * 1. Remove the gray background on active links in IE 10.
  * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
  */
+ul {
+  list-style-type:none;
+}
+
+li {
+  list-style-type:none;
+}
 
 a {
   background-color: transparent; /* 1 */
@@ -354,8 +361,15 @@ textarea {
 [type="checkbox"],
 [type="radio"] {
   box-sizing: border-box; /* 1 */
-  visibility: none;
   padding: 0; /* 2 */
+}
+@media screen and (max-width: 800px) {
+  [type="checkbox"],
+  [type="radio"] {
+    box-sizing: border-box; /* 1 */
+    visibility: hidden;
+    padding: 0; /* 2 */
+  }
 }
 
 /**
