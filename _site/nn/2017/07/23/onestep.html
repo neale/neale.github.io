@@ -27,7 +27,7 @@
             });
         </script> 
       <meta charset="utf-8">
-          <title>Currently Reading This Week</title>
+          <title>Removing One-Step Adversarial Perturbations with Bilateral Filtering</title>
           <meta name="viewport" content="width=device-width, initial-scale=1">
           <link rel="shortcut icon" href="/assets/images/top_icon.png">
           <!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">-->
@@ -72,24 +72,31 @@
  
                 <!--start of the post title-->
     <section class="single-post-title-main">
-        <h2>Currently Reading This Week</h2>
+        <h2>Removing One-Step Adversarial Perturbations with Bilateral Filtering</h2>
     </section>
 <!--End of the post title-->
 
 <!--Start of the section post-->
     <section class="post">
        <p>
-          <h3 id="riemannian-metrics-for-neural-networks-i-feed-forward-neural-networks-2015">Riemannian metrics for neural networks I: Feed Forward Neural Networks (2015)</h3>
-<p><a href="https://arxiv.org/pdf/1303.0818v5.pdf">arxiv</a></p>
+          <p>I don’t think its escaped anyone that the state of the art of adversarial attacks completely outstrips the state of the art for defenses. 
+All defenses including defensive distillation, logit classification a la. SafetyNet, and other statistical methods are currently broken. 
+Mostly, these defenses fall to optimizaiton based adversarial attacks, because the current way we do things in machine learning and computer vision is invariably to train a classifier.</p>
 
-<h3 id="riemannian-metrics-for-neural-networks-ii-recurrent-networks-and-learning-symbolic-data-sequences-2015">Riemannian metrics for neural networks II: recurrent networks and learning symbolic data sequences (2015)</h3>
-<p><a href="https://arxiv.org/pdf/1306.0514v4.pdf">arxiv</a></p>
+<p>Defensive distillation was a good idea: the authors basically fuzz the gradients of the network by training a second smaller network on the softmax outputs of the original network.</p>
 
-<h3 id="boosting-adversarial-attacks-with-momentum">Boosting Adversarial Attacks with Momentum</h3>
-<p><a href="https://arxiv.org/pdf/1710.06081.pdf">arxiv</a></p>
+<p>So that a training sample of the second network has a distribution of labels assigned as the label, instead of a single hard label. This increases the number of features that need to be changed by an adversarial attack, in order to change the output label. That’s a high level overview, I recommend the actual paper <a href="https://arxiv.org/pdf/1511.04508.pdf">here</a></p>
 
-<h3 id="deep-image-reconstruction-from-human-brain-activity">Deep image reconstruction from human brain activity</h3>
-<p><a href="https://www.biorxiv.org/content/biorxiv/early/2017/12/28/240317.full.pdf">biorxiv</a></p>
+<p>This worked pretty well at first, until it was broken by <a href="https://arxiv.org/pdf/1607.04311.pdf">Carlini and Wagner</a> with an iterative method that targets logits instead of the softmax output. 
+Distillation relies heavily on the temperature of the primary network in order to train the distillation net. 
+Which controls the distribution of soft labels that each example is assigned. 
+Recap: a softmax output creates a <script type="math/tex">[0, 1]</script> normalized distribution from the incoming logits.</p>
+
+<script type="math/tex; mode=display">F(y = softmax(Z(\theta, x) / T)</script>
+
+<script type="math/tex; mode=display">softmax() = \frac{e^{zj}}{\sum_{k} e^{z_k}}</script>
+
+<p>Where the temperature <script type="math/tex">T</script> controls the shape of the output distribtion. When <script type="math/tex">T \rightarrow \infty</script> the output becomes uniform, when <script type="math/tex">T \rightarrow 0</script> the distribution become unimodal.</p>
 
        </p>
 
