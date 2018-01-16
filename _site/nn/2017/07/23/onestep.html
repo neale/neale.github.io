@@ -81,22 +81,60 @@
        <p>
           <p>I don’t think its escaped anyone that the state of the art of adversarial attacks completely outstrips the state of the art for defenses. 
 All defenses including defensive distillation, logit classification a la. SafetyNet, and other statistical methods are currently broken. 
-Mostly, these defenses fall to optimizaiton based adversarial attacks, because the current way we do things in machine learning and computer vision is invariably to train a classifier.</p>
+Mostly, these defenses fall to optimization based adversarial attacks, because the current way we do things in machine learning and computer vision is invariably to train a classifier.</p>
 
-<p>Defensive distillation was a good idea: the authors basically fuzz the gradients of the network by training a second smaller network on the softmax outputs of the original network.</p>
+<script type="math/tex; mode=display">\textbf{y} = \mathit{overfit}(\textbf{x})</script>
 
-<p>So that a training sample of the second network has a distribution of labels assigned as the label, instead of a single hard label. This increases the number of features that need to be changed by an adversarial attack, in order to change the output label. That’s a high level overview, I recommend the actual paper <a href="https://arxiv.org/pdf/1511.04508.pdf">here</a></p>
+<p>In the context of adversarial attacks, training regimes invaribly create fully exploitable models. 
+The CW attacks are all optimization based attacks, which are very much standard now. Optimization based attacks such as CW, the L-BFGS attack, and the Jacobian Based Saliency Map attack are far more effective at creating adversarial attacks than so called one-step attacks.
+Most optimization attacks work by taking some image <script type="math/tex">x</script> with some label <script type="math/tex">y</script>, and repeatly minimizing some objective s.t. some norm to get a similar image <script type="math/tex">x'</script> with a different label <script type="math/tex">y'</script></p>
 
-<p>This worked pretty well at first, until it was broken by <a href="https://arxiv.org/pdf/1607.04311.pdf">Carlini and Wagner</a> with an iterative method that targets logits instead of the softmax output. 
-Distillation relies heavily on the temperature of the primary network in order to train the distillation net. 
-Which controls the distribution of soft labels that each example is assigned. 
-Recap: a softmax output creates a <script type="math/tex">[0, 1]</script> normalized distribution from the incoming logits.</p>
+<p>This is in contrast to one-step methods, which constructs the adversarial perturbation in a single go. 
+The common example is the Fast Gradient Sign Method, which adds a perturbation <script type="math/tex">\eta</script> in the direction of the incorrect class.</p>
 
-<script type="math/tex; mode=display">F(y = softmax(Z(\theta, x) / T)</script>
+<script type="math/tex; mode=display">\eta = \textit{sign}(\nabla_x H(x, y'))</script>
 
-<script type="math/tex; mode=display">softmax() = \frac{e^{zj}}{\sum_{k} e^{z_k}}</script>
+<p>Where <script type="math/tex">\textit{H(x, y')}</script> is the cross entropy loss w.r.t an image and an incorrect label.
+Adversarial examples can be created quickly using only a single gradient computation.</p>
 
-<p>Where the temperature <script type="math/tex">T</script> controls the shape of the output distribtion. When <script type="math/tex">T \rightarrow \infty</script> the output becomes uniform, when <script type="math/tex">T \rightarrow 0</script> the distribution become unimodal.</p>
+<p>Compare this to some of the different objective functions of iterative methods, using the same notation as above. <script type="math/tex">Z</script> here refers to the network logits, i.e. the input of the softmax layer,</p>
+
+<h5 id="l-bfgs">L-BFGS</h5>
+
+<script type="math/tex; mode=display">\min c || x - x' ||^{2}_{2} + H(x')</script>
+
+<h5 id="cw-l_2">CW (<script type="math/tex">L_2</script>)</h5>
+
+<script type="math/tex; mode=display">\min ||\eta - x||^2_2 + c f(\eta)</script>
+
+<script type="math/tex; mode=display">\textit{where} \quad f(x') = \max(Z(x')_i - Z(x')_{y'}) \quad 
+\textit{such that} \quad i \neq y'</script>
+
+<p>I’ve simplified the above equations; removing the box constraints and the CW change of variables for readability. 
+But the point is that we can choose a metric, and can optimize against our network to create effective adversarial examples with minimal distortion.</p>
+
+<div class="post-img">
+<p align="center">
+<img class="img-responsive img-post" src=" /assets/images/snake-adv-comp.svg" align="middle" width="90%" height="90%" />
+</p>
+</div>
+
+<p>Given the above difference, the rationale behind one-step attacks seems suspect. Why bother with them at all if optimization based methods are so superior that the magnitude of the (normalized) perturbation is less than 1 across a <script type="math/tex">(299 x 299)</script> image.</p>
+
+<h4 id="transferability">Transferability</h4>
+
+<p>Since iterative attacks optimize against a single network, the generated adversarial examples often do not work well against other networks. 
+Different network architectures trained with gradient descent yield different local minima in parameter space, and an optimized adversarial example will not generalize well to a different architecture. 
+It seems that adversarial examples can overfit just like networks can.</p>
+
+<p>One-step methods often <a href="https://arxiv.org/abs/1705.07204">generalize better</a> than iterative methods, which leads to a single set of adversarial examples being a vulnerability for any network trained on the same dataset. 
+This is far less effort for bad actors than optimizing against all networks and guessing which ones are deployed in the field.</p>
+
+<h4 id="one-step-methods-are-a-simple-viable-threat-vector-against-deployed-ml-systems">One-step methods are a simple, viable threat vector against deployed ML systems</h4>
+
+<p>If you deploy machine learning systems at any scale, you should consider the threat of adversarial inputs. 
+If you have a highly tuned model architecture that you’re sure nobody else can deduce, then you might be safe from <em>some</em> well-optimized adversarial attacks. However one-step examples are cheap to create and can generalize across architectures.</p>
+
 
        </p>
 
