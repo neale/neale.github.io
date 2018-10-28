@@ -82,14 +82,11 @@ template,
 /* Links
    ========================================================================== */
 /**
- * 1. Remove the gray background on active links in IE 10.
- * 2. Remove gaps in links underline in iOS 8+ and Safari 8+.
+ * Remove the gray background on active links in IE 10.
  */
 a {
   background-color: transparent;
   /* 1 */
-  -webkit-text-decoration-skip: objects;
-  /* 2 */
 }
 
 /**
@@ -474,6 +471,14 @@ th {
 
 button {
   cursor: pointer;
+  border-radius: 0;
+}
+
+details summary {
+  cursor: pointer;
+}
+details:not([open]) > *:not(summary) {
+  display: none !important;
 }
 
 h1,
@@ -569,6 +574,7 @@ pre {
   vertical-align: text-bottom;
 }
 
+/* Fade in an element */
 .anim-fade-in {
   animation-name: fade-in;
   animation-duration: 1s;
@@ -584,6 +590,24 @@ pre {
   }
   100% {
     opacity: 1;
+  }
+}
+/* Fade out an element */
+.anim-fade-out {
+  animation-name: fade-out;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+.anim-fade-out.fast {
+  animation-duration: 0.3s;
+}
+
+@keyframes fade-out {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
   }
 }
 /* Fade in and slide up an element */
@@ -706,6 +730,14 @@ pre {
     transform: scale3d(1, 1, 1);
   }
 }
+/* Increase scale of an element on hover */
+.hover-grow {
+  transition: transform 0.3s;
+}
+.hover-grow:hover {
+  transform: scale(1.025);
+}
+
 /* Add a gray border */
 .border {
   border: 1px #e1e4e8 solid !important;
@@ -834,6 +866,11 @@ pre {
 /* Add a 2x border-radius to all corners */
 .rounded-2 {
   border-radius: 6px !important;
+}
+
+/* Add a 50% border-radius to make something into a circle */
+.circle {
+  border-radius: 50% !important;
 }
 
 .box-shadow {
@@ -1698,6 +1735,11 @@ pre {
   vertical-align: text-bottom !important;
 }
 
+/* Vertical align to the parent's baseline */
+.v-align-baseline {
+  vertical-align: baseline !important;
+}
+
 /* Set the overflow hidden */
 .overflow-hidden {
   overflow: hidden !important;
@@ -1813,6 +1855,11 @@ pre {
   width: 100% !important;
 }
 
+/* Max height 100% */
+.height-fit {
+  max-height: 100% !important;
+}
+
 /* Set the height to 100% */
 .height-full {
   height: 100% !important;
@@ -1823,16 +1870,18 @@ pre {
   min-width: 0 !important;
 }
 
+/* Set the direction to rtl */
 .direction-rtl {
   direction: rtl !important;
 }
 
+/* Set the direction to ltr */
 .direction-ltr {
   direction: ltr !important;
 }
 
 @media (min-width: 544px) {
-  /* Set the direction to ltr at the sm breakpoint */
+  /* Set the direction to rtl at the sm breakpoint */
   .direction-sm-rtl {
     direction: rtl !important;
   }
@@ -1843,7 +1892,7 @@ pre {
   }
 }
 @media (min-width: 768px) {
-  /* Set the direction to ltr at the md breakpoint */
+  /* Set the direction to rtl at the md breakpoint */
   .direction-md-rtl {
     direction: rtl !important;
   }
@@ -1854,7 +1903,7 @@ pre {
   }
 }
 @media (min-width: 1012px) {
-  /* Set the direction to ltr at the lg breakpoint */
+  /* Set the direction to rtl at the lg breakpoint */
   .direction-lg-rtl {
     direction: rtl !important;
   }
@@ -1865,7 +1914,7 @@ pre {
   }
 }
 @media (min-width: 1280px) {
-  /* Set the direction to ltr at the xl breakpoint */
+  /* Set the direction to rtl at the xl breakpoint */
   .direction-xl-rtl {
     direction: rtl !important;
   }
@@ -5906,11 +5955,11 @@ pre {
 }
 
 .col-1 {
-  width: 8.33333%;
+  width: 8.3333333333%;
 }
 
 .col-2 {
-  width: 16.66667%;
+  width: 16.6666666667%;
 }
 
 .col-3 {
@@ -5918,11 +5967,11 @@ pre {
 }
 
 .col-4 {
-  width: 33.33333%;
+  width: 33.3333333333%;
 }
 
 .col-5 {
-  width: 41.66667%;
+  width: 41.6666666667%;
 }
 
 .col-6 {
@@ -5930,11 +5979,11 @@ pre {
 }
 
 .col-7 {
-  width: 58.33333%;
+  width: 58.3333333333%;
 }
 
 .col-8 {
-  width: 66.66667%;
+  width: 66.6666666667%;
 }
 
 .col-9 {
@@ -5942,11 +5991,11 @@ pre {
 }
 
 .col-10 {
-  width: 83.33333%;
+  width: 83.3333333333%;
 }
 
 .col-11 {
-  width: 91.66667%;
+  width: 91.6666666667%;
 }
 
 .col-12 {
@@ -5955,11 +6004,11 @@ pre {
 
 @media (min-width: 544px) {
   .col-sm-1 {
-    width: 8.33333%;
+    width: 8.3333333333%;
   }
 
   .col-sm-2 {
-    width: 16.66667%;
+    width: 16.6666666667%;
   }
 
   .col-sm-3 {
@@ -5967,11 +6016,11 @@ pre {
   }
 
   .col-sm-4 {
-    width: 33.33333%;
+    width: 33.3333333333%;
   }
 
   .col-sm-5 {
-    width: 41.66667%;
+    width: 41.6666666667%;
   }
 
   .col-sm-6 {
@@ -5979,11 +6028,11 @@ pre {
   }
 
   .col-sm-7 {
-    width: 58.33333%;
+    width: 58.3333333333%;
   }
 
   .col-sm-8 {
-    width: 66.66667%;
+    width: 66.6666666667%;
   }
 
   .col-sm-9 {
@@ -5991,11 +6040,11 @@ pre {
   }
 
   .col-sm-10 {
-    width: 83.33333%;
+    width: 83.3333333333%;
   }
 
   .col-sm-11 {
-    width: 91.66667%;
+    width: 91.6666666667%;
   }
 
   .col-sm-12 {
@@ -6004,11 +6053,11 @@ pre {
 }
 @media (min-width: 768px) {
   .col-md-1 {
-    width: 8.33333%;
+    width: 8.3333333333%;
   }
 
   .col-md-2 {
-    width: 16.66667%;
+    width: 16.6666666667%;
   }
 
   .col-md-3 {
@@ -6016,11 +6065,11 @@ pre {
   }
 
   .col-md-4 {
-    width: 33.33333%;
+    width: 33.3333333333%;
   }
 
   .col-md-5 {
-    width: 41.66667%;
+    width: 41.6666666667%;
   }
 
   .col-md-6 {
@@ -6028,11 +6077,11 @@ pre {
   }
 
   .col-md-7 {
-    width: 58.33333%;
+    width: 58.3333333333%;
   }
 
   .col-md-8 {
-    width: 66.66667%;
+    width: 66.6666666667%;
   }
 
   .col-md-9 {
@@ -6040,11 +6089,11 @@ pre {
   }
 
   .col-md-10 {
-    width: 83.33333%;
+    width: 83.3333333333%;
   }
 
   .col-md-11 {
-    width: 91.66667%;
+    width: 91.6666666667%;
   }
 
   .col-md-12 {
@@ -6053,11 +6102,11 @@ pre {
 }
 @media (min-width: 1012px) {
   .col-lg-1 {
-    width: 8.33333%;
+    width: 8.3333333333%;
   }
 
   .col-lg-2 {
-    width: 16.66667%;
+    width: 16.6666666667%;
   }
 
   .col-lg-3 {
@@ -6065,11 +6114,11 @@ pre {
   }
 
   .col-lg-4 {
-    width: 33.33333%;
+    width: 33.3333333333%;
   }
 
   .col-lg-5 {
-    width: 41.66667%;
+    width: 41.6666666667%;
   }
 
   .col-lg-6 {
@@ -6077,11 +6126,11 @@ pre {
   }
 
   .col-lg-7 {
-    width: 58.33333%;
+    width: 58.3333333333%;
   }
 
   .col-lg-8 {
-    width: 66.66667%;
+    width: 66.6666666667%;
   }
 
   .col-lg-9 {
@@ -6089,11 +6138,11 @@ pre {
   }
 
   .col-lg-10 {
-    width: 83.33333%;
+    width: 83.3333333333%;
   }
 
   .col-lg-11 {
-    width: 91.66667%;
+    width: 91.6666666667%;
   }
 
   .col-lg-12 {
@@ -6102,11 +6151,11 @@ pre {
 }
 @media (min-width: 1280px) {
   .col-xl-1 {
-    width: 8.33333%;
+    width: 8.3333333333%;
   }
 
   .col-xl-2 {
-    width: 16.66667%;
+    width: 16.6666666667%;
   }
 
   .col-xl-3 {
@@ -6114,11 +6163,11 @@ pre {
   }
 
   .col-xl-4 {
-    width: 33.33333%;
+    width: 33.3333333333%;
   }
 
   .col-xl-5 {
-    width: 41.66667%;
+    width: 41.6666666667%;
   }
 
   .col-xl-6 {
@@ -6126,11 +6175,11 @@ pre {
   }
 
   .col-xl-7 {
-    width: 58.33333%;
+    width: 58.3333333333%;
   }
 
   .col-xl-8 {
-    width: 66.66667%;
+    width: 66.6666666667%;
   }
 
   .col-xl-9 {
@@ -6138,11 +6187,11 @@ pre {
   }
 
   .col-xl-10 {
-    width: 83.33333%;
+    width: 83.3333333333%;
   }
 
   .col-xl-11 {
-    width: 91.66667%;
+    width: 91.6666666667%;
   }
 
   .col-xl-12 {
@@ -6289,11 +6338,11 @@ pre {
   }
 }
 .offset-1 {
-  margin-left: 8.33333%;
+  margin-left: 8.3333333333%;
 }
 
 .offset-2 {
-  margin-left: 16.66667%;
+  margin-left: 16.6666666667%;
 }
 
 .offset-3 {
@@ -6301,11 +6350,11 @@ pre {
 }
 
 .offset-4 {
-  margin-left: 33.33333%;
+  margin-left: 33.3333333333%;
 }
 
 .offset-5 {
-  margin-left: 41.66667%;
+  margin-left: 41.6666666667%;
 }
 
 .offset-6 {
@@ -6313,11 +6362,11 @@ pre {
 }
 
 .offset-7 {
-  margin-left: 58.33333%;
+  margin-left: 58.3333333333%;
 }
 
 .offset-8 {
-  margin-left: 66.66667%;
+  margin-left: 66.6666666667%;
 }
 
 .offset-9 {
@@ -6325,20 +6374,20 @@ pre {
 }
 
 .offset-10 {
-  margin-left: 83.33333%;
+  margin-left: 83.3333333333%;
 }
 
 .offset-11 {
-  margin-left: 91.66667%;
+  margin-left: 91.6666666667%;
 }
 
 @media (min-width: 544px) {
   .offset-sm-1 {
-    margin-left: 8.33333%;
+    margin-left: 8.3333333333%;
   }
 
   .offset-sm-2 {
-    margin-left: 16.66667%;
+    margin-left: 16.6666666667%;
   }
 
   .offset-sm-3 {
@@ -6346,11 +6395,11 @@ pre {
   }
 
   .offset-sm-4 {
-    margin-left: 33.33333%;
+    margin-left: 33.3333333333%;
   }
 
   .offset-sm-5 {
-    margin-left: 41.66667%;
+    margin-left: 41.6666666667%;
   }
 
   .offset-sm-6 {
@@ -6358,11 +6407,11 @@ pre {
   }
 
   .offset-sm-7 {
-    margin-left: 58.33333%;
+    margin-left: 58.3333333333%;
   }
 
   .offset-sm-8 {
-    margin-left: 66.66667%;
+    margin-left: 66.6666666667%;
   }
 
   .offset-sm-9 {
@@ -6370,20 +6419,20 @@ pre {
   }
 
   .offset-sm-10 {
-    margin-left: 83.33333%;
+    margin-left: 83.3333333333%;
   }
 
   .offset-sm-11 {
-    margin-left: 91.66667%;
+    margin-left: 91.6666666667%;
   }
 }
 @media (min-width: 768px) {
   .offset-md-1 {
-    margin-left: 8.33333%;
+    margin-left: 8.3333333333%;
   }
 
   .offset-md-2 {
-    margin-left: 16.66667%;
+    margin-left: 16.6666666667%;
   }
 
   .offset-md-3 {
@@ -6391,11 +6440,11 @@ pre {
   }
 
   .offset-md-4 {
-    margin-left: 33.33333%;
+    margin-left: 33.3333333333%;
   }
 
   .offset-md-5 {
-    margin-left: 41.66667%;
+    margin-left: 41.6666666667%;
   }
 
   .offset-md-6 {
@@ -6403,11 +6452,11 @@ pre {
   }
 
   .offset-md-7 {
-    margin-left: 58.33333%;
+    margin-left: 58.3333333333%;
   }
 
   .offset-md-8 {
-    margin-left: 66.66667%;
+    margin-left: 66.6666666667%;
   }
 
   .offset-md-9 {
@@ -6415,20 +6464,20 @@ pre {
   }
 
   .offset-md-10 {
-    margin-left: 83.33333%;
+    margin-left: 83.3333333333%;
   }
 
   .offset-md-11 {
-    margin-left: 91.66667%;
+    margin-left: 91.6666666667%;
   }
 }
 @media (min-width: 1012px) {
   .offset-lg-1 {
-    margin-left: 8.33333%;
+    margin-left: 8.3333333333%;
   }
 
   .offset-lg-2 {
-    margin-left: 16.66667%;
+    margin-left: 16.6666666667%;
   }
 
   .offset-lg-3 {
@@ -6436,11 +6485,11 @@ pre {
   }
 
   .offset-lg-4 {
-    margin-left: 33.33333%;
+    margin-left: 33.3333333333%;
   }
 
   .offset-lg-5 {
-    margin-left: 41.66667%;
+    margin-left: 41.6666666667%;
   }
 
   .offset-lg-6 {
@@ -6448,11 +6497,11 @@ pre {
   }
 
   .offset-lg-7 {
-    margin-left: 58.33333%;
+    margin-left: 58.3333333333%;
   }
 
   .offset-lg-8 {
-    margin-left: 66.66667%;
+    margin-left: 66.6666666667%;
   }
 
   .offset-lg-9 {
@@ -6460,20 +6509,20 @@ pre {
   }
 
   .offset-lg-10 {
-    margin-left: 83.33333%;
+    margin-left: 83.3333333333%;
   }
 
   .offset-lg-11 {
-    margin-left: 91.66667%;
+    margin-left: 91.6666666667%;
   }
 }
 @media (min-width: 1280px) {
   .offset-xl-1 {
-    margin-left: 8.33333%;
+    margin-left: 8.3333333333%;
   }
 
   .offset-xl-2 {
-    margin-left: 16.66667%;
+    margin-left: 16.6666666667%;
   }
 
   .offset-xl-3 {
@@ -6481,11 +6530,11 @@ pre {
   }
 
   .offset-xl-4 {
-    margin-left: 33.33333%;
+    margin-left: 33.3333333333%;
   }
 
   .offset-xl-5 {
-    margin-left: 41.66667%;
+    margin-left: 41.6666666667%;
   }
 
   .offset-xl-6 {
@@ -6493,11 +6542,11 @@ pre {
   }
 
   .offset-xl-7 {
-    margin-left: 58.33333%;
+    margin-left: 58.3333333333%;
   }
 
   .offset-xl-8 {
-    margin-left: 66.66667%;
+    margin-left: 66.6666666667%;
   }
 
   .offset-xl-9 {
@@ -6505,11 +6554,11 @@ pre {
   }
 
   .offset-xl-10 {
-    margin-left: 83.33333%;
+    margin-left: 83.3333333333%;
   }
 
   .offset-xl-11 {
-    margin-left: 91.66667%;
+    margin-left: 91.6666666667%;
   }
 }
 .markdown-body {
@@ -6682,6 +6731,9 @@ pre {
   margin-top: 0;
   margin-bottom: 0;
 }
+.markdown-body li {
+  word-wrap: break-all;
+}
 .markdown-body li > p {
   margin-top: 16px;
 }
@@ -6820,19 +6872,11 @@ pre {
 
 .markdown-body code,
 .markdown-body tt {
-  padding: 0;
-  padding-top: 0.2em;
-  padding-bottom: 0.2em;
+  padding: 0.2em 0.4em;
   margin: 0;
   font-size: 85%;
   background-color: rgba(27, 31, 35, 0.05);
   border-radius: 3px;
-}
-.markdown-body code::before, .markdown-body code::after,
-.markdown-body tt::before,
-.markdown-body tt::after {
-  letter-spacing: -0.2em;
-  content: "\00a0";
 }
 .markdown-body code br,
 .markdown-body tt br {
@@ -6880,11 +6924,6 @@ pre {
   word-wrap: normal;
   background-color: transparent;
   border: 0;
-}
-.markdown-body pre code::before, .markdown-body pre code::after,
-.markdown-body pre tt::before,
-.markdown-body pre tt::after {
-  content: normal;
 }
 
 .markdown-body .csv-data td,
