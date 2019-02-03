@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+        <script>
+          MathJax.Hub.Config({
+              config: ["MMLorHTML.js"],
+              extensions: ["tex2jax.js","TeX/AMSmath.js","TeX/AMSsymbols.js"],
+              jax: ["input/TeX"],
+              tex2jax: {
+                  inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+                  displayMath: [ ['$$','$$'], ["\\[","\\]"] ],
+                  processEscapes: false
+              },
+              TeX: {
+                  TagSide: "right",
+                  TagIndent: ".8em",
+                  MultLineWidth: "85%",
+                  equationNumbers: {
+                     autoNumber: "AMS",
+                  },
+                  unicode: {
+                     fonts: "STIXGeneral,'Arial Unicode MS'"
+                  }
+              },
+              showProcessingMessages: false
+            });
+        </script> 
+      <meta charset="utf-8">
+          <title>{{ page.title }}</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1">
+          <link rel="shortcut icon" href="/assets/images/top_icon.png">
+          <!-- <link href="http://fonts.googleapis.com/css?family=Source+Sans+Pro:200,400" rel="stylesheet" type="text/css">-->
+          <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,400" rel="stylesheet" type="text/css">
+          <link href="/assets/css/post.css" rel="stylesheet">
+          <link href="/assets/css/syntax.css" rel="stylesheet">
+          <link href="/assets/css/image_grid.css" rel="stylesheet">
+
+    </head>
+    <body>
+        <header class="mobile-header">
+        <input id="burger" type="checkbox" />
+
+        <label for="burger">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+
+        <nav>    
+          <ul>
+              <li><a href="/blog" class="header-links">Deep Learning</a></li>
+              <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
+              <li><a href="https://www.linkedin.com/in/neale-ratzlaff-46879973/" class="header-links">LinkedIn</a></li>
+              <li><a href="/art" class="header-links">Generative Art</a></li>
+          </ul>  
+        </nav>
+        </header>
+
+        <div class="outer-container">
+            <div class="inner-container">
+              <header class="site-header">
+                <nav id="nav-toggle">
+                  <ul class="nav navbar-nav">
+                    <li><a href="/" class="header-links">Home</a><li>
+                    <li><a href="/blog" class="header-links">Deep Learning</a></li>
+                    <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
+                    <li><a href="/art" class="header-links">Generative Art</a></li>
+                  </ul>
+                </nav>
+              </header>
+       
+ 
+              {{ content }}
+
+        </div><!-- /.inner-container -->
+      </div>  <!-- /.outer-container -->
+        </footer>
+
+              </body>
+
+</html>
