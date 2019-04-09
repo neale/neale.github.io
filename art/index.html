@@ -3,8 +3,9 @@ layout: photos
 title: art
 ---
 
+
 <div class="container">
-  <div class="photos">
+   <div class="photos">
     <img src="/images/1.png">
     <img src="/images/2.png">
     <img src="/images/3.png">
@@ -12,6 +13,20 @@ title: art
     <img src="/images/5.png">
     <img src="/images/29.png">
    </div>
+   <p>
+   	My dream is to live in a world where I can shed my researcher skin, and take up the paintbrush.
+	Since I don't live in that world I'm trying to create it by using neural networks to create art that I think is pleasant, and hopefully someone else thinks so too.
+	ML-assisted art is this wonderful world where we don't have to worry about SOTA numbers, or whether someone else's method scales better.
+	Trying to create something beautiful turns out to be a bigger drive for me than classification accuracy, who knew?
+	What's more -- the world of deep learning is finally big enough that the possibilities for artistic expression are endless. 
+   </p>
+   <p> 
+   	In the past I wanted to create music, I really the idea of an AI composer who could freely create music outside the capabilities of humans.
+	It turns out that music is really hard: it's absurdly demanding computationally, and human ears aren't very forgiving.
+	You can check out my attempt to compose music here at my
+	<a href="https://soundcloud.com/nealeratzlaff/sets/wavenet-2s-solo-piano">soundcloud</a> 
+   </p>
+
 </div>
 
 <br> </br>
@@ -30,6 +45,13 @@ title: art
     <img src="/images/17.png">
     <img src="/images/15.png">
    </div>
+   <p> 
+   	The images here use a <a href="https://en.wikipedia.org/wiki/Compositional_pattern-producing_network">CPPN</a> to generate images from random neural networks.
+	CPPNs only generate one pixel at a time, so we can use them to generate images of arbitrary resolution.
+	If you're generating 8K images, I highly recommend using something more powerful than a laptop.
+   	If you just want to make some of these yourself, I have a PyTorch implementation up on Github <a href=https://github.com/neale/CPPN">here</a>.
+	Its pretty easy to get started, and you can tweak pretty much anything in the code to get different results. All the images displayed here use the same program. 
+   </p>
 </div>
 
 <br> </br>
@@ -51,6 +73,10 @@ title: art
 </div>
 <br> </br>
 <div class="container">
+	<p> 
+		By using the same CPPN program we can generate a batch of images, and interpolate thousands of frames between them. 
+		If we compase the resulting images together we can generate a video of how the neural network responds to different inputs. 
+	</p>
 	<div class='videoWrapper'>
 		<iframe src="https://player.vimeo.com/video/315036469" width="800" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	</div>
@@ -67,6 +93,22 @@ title: art
 		<iframe src="https://player.vimeo.com/video/315036044" width="800" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
 	</div>
 </div>
+<div class="container">
+	<p>
+	The most interesting thing we can do with a CPPN is to wire them up to a more powerful generative model.
+	Below is a CPPN-GAN, where the generator is replaced by a CPPN. 
+	Modeling with a CPPN-GAN is hard, as the CPPN lacks the representational power to model complicated structures.
+	We can leverage advances in GAN training techniques to some degree -- here I've used a WGAN-GP, which trains very reliably. 
+	Still, complicated datasets such as CIFAR-10/CELEB-A remain hard to generate. 
+	MNIST is pretty easy even with linear networks, but we really want to use convolutions to capture local relationships.
+	Doing this is an open problem however, and I've failed a lot at doing this. 
+	CPPN-Autoencoding is my personal goal -- generating arbitrarily high resolution images from small ones without using something like ESRGAN. 
+	</p>
+	<div class='videoWrapper'>
+		<iframe src="https://player.vimeo.com/video/315608606" width="800" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+	</div>
+</div>
+
 <br> </br>
 <div class="container">
   <div class="photos-big">
