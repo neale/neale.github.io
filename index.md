@@ -2,10 +2,8 @@
 layout: default
 ---
 
-I'm Neale Ratzlaff, I'm a Deep Learning and Computer Vision researcher
+I'm Neale Ratzlaff, &#x1F332; &#x1F332; I'm a Deep Learning and Computer Vision researcher
 I'm current interning at Horizon Robotics, working on exploration in deep reinforcement learning
-
-I live in Corvallis, originally from Portland - all in Oregon &#x1F332;.
 
 I'm currently a PhD candidate under Dr. [Fuxin Li](https://web.engr.oregonstate.edu/~lif/) at Oregon State University.
 I'm broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about alignment, and paperclips.
