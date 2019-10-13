@@ -42,7 +42,7 @@ We use an adaptive bilateral filter to smooth the purturbations left by adversar
 
 ### [Methods for Detection and Recovery of Out-of-Distribution Examples.](https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/mw22vb88d) M.S. Degree Computer Science. Oregon State University (2018)
 
-<div style="text-align:center"><img src="/class.png" /> <a       /> <img src="/density.png"/> </div>
+<div style="text-align:center"><img src="/class.png" /> <img src="/density.png"/> </div>
 
 ---------
 
@@ -50,7 +50,7 @@ We use an adaptive bilateral filter to smooth the purturbations left by adversar
 
 I maintain and work on various other projects, all deep learning related. Pretty mnuch all of them are in PyTorch. 
 
-* [Adversarial Autoencoders](github.com/neale/adversarial-autoencoders)
+* [Adversarial Autoencoders](github.com/neale/adversarial-autoencoder)
 * [Improved Wasserstein GAN](github.com/neale/Improved-WGAN)
 * [Compositional Pattern Producing Networks](github.com/neale/CPPN)
 
