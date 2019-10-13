@@ -7,9 +7,10 @@ I'm current interning at Horizon Robotics, working on exploration in deep reinfo
 
 I live in Corvallis, originally from Portland - all in Oregon &#x1F332;.
 
-I'm currently a PhD candidate under Dr. <a href="https://web.engr.oregonstate.edu/~lif/" class="landing-link">Fuxin Li</a> at Oregon State University</p>
-I'm broadly interested in variational inference, generative models, adversarial defenses, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about uncertainty, alignment, and paperclips.
+I'm currently a PhD candidate under Dr. [Fuxin Li](https://web.engr.oregonstate.edu/~lif/) at Oregon State University.
+I'm broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about alignment, and paperclips.
 
+Currently I'm interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles. 
         
 I've worked at Horizon Robotics, [Intel](https://vimeo.com/170280447), and [Tektronix](https://www.tek.com/)
 
