@@ -1,59 +1,116 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-US">
   <head>
-    <meta charset="utf-8">
-    <title>Neale Ratzlaff</title>
+
+    
+    <meta charset="UTF-8">
+
+<!-- Begin Jekyll SEO tag v2.6.1 -->
+<title>Neale Ratzlaff | Implicit is Sometimes Better than Explicit</title>
+<meta name="generator" content="Jekyll v4.0.0" />
+<meta property="og:title" content="Neale Ratzlaff" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Implicit is Sometimes Better than Explicit" />
+<meta property="og:description" content="Implicit is Sometimes Better than Explicit" />
+<link rel="canonical" href="http://localhost:4000/" />
+<meta property="og:url" content="http://localhost:4000/" />
+<meta property="og:site_name" content="Neale Ratzlaff" />
+<script type="application/ld+json">
+{"url":"http://localhost:4000/","name":"Neale Ratzlaff","description":"Implicit is Sometimes Better than Explicit","headline":"Neale Ratzlaff","@type":"WebSite","@context":"https://schema.org"}</script>
+<!-- End Jekyll SEO tag -->
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="shortcut icon" href="assets/images/top_icon.png">
-    <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:200,400" rel="stylesheet" type="text/css">
-    <link rel="stylesheet" href="/assets/css/application.css">
+    <meta name="theme-color" content="#157878">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="stylesheet" href="/assets/css/style.css?v=">
   </head>
   <body>
-    <div class="outer-container">
-      <div class="inner-container">
-      <img src="assets/images/stock3_1x.png" srcset="assets/images/stock3_1x.png 2x, assets/images/stock3_1x.png 3x" class="goodboye">
+    <a id="skip-to-content" href="#content">Skip to the content.</a>
 
-        <header class="mobile-header">
-        <input id="burger" type="checkbox"/>
+    <header class="page-header" role="banner">
+      <h1 class="project-name">Neale Ratzlaff</h1>
+      <h2 class="project-tagline">Implicit is Sometimes Better than Explicit</h2>
+      
+      
+      <a href="#" class="image-avatar"> <img src="/selfpic_circle.png" width=alt=""></a>
+    </header>
 
-        <label for="burger">
-            <span></span>
-            <span></span>
-            <span></span>
-        </label>
+    <main id="content" class="main-content" role="main">
+      <p>I’m Neale Ratzlaff, I’m a Deep Learning and Computer Vision researcher
+I’m current interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
 
-        <nav>    
-          <ul>
-              <li><a href="/publications" class="header-links">Publications</a></li>
-              <li><a href="/blog" class="header-links">Deep Learning</a></li>
-              <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
-              <li><a href="/assets/resume.pdf" class="header-links">CV</a></li>
-              <li><a href="/art" class="header-links">Generative Art</a></li>
-          </ul>  
-        </nav>
-        </header>
+<p>I live in Corvallis, originally from Portland - all in Oregon 🌲.</p>
 
-        <header class="site-header">
-          <nav id="nav-toggle">
-            <ul class="nav navbar-nav">
-              <li><a href="/publications" class="header-links">Publications</a></li>
-              <li><a href="/blog" class="header-links">Deep Learning</a></li>
-              <li><a href="http://github.com/neale" class="header-links">GitHub</a></li>
-              <li><a href="/assets/resume.pdf" class="header-links">CV</a></li>
-              <li><a href="/art" class="header-links">Generative Art</a></li>
-            </ul>
-          </nav>
-        </header>
-        <p>I'm <b>Neale Ratzlaff</b>, I'm a Deep Learning and Computer Vision researcher.</p>
-        <p> I'm current interning at Horizon Robotics, working on deep reinforcement learning </p>
-        <p>
-          I live in Corvallis, originally from Portland - all in Oregon &#x1F332;.
-        </p>
-        <p> I'm currently a PhD candidate under Dr. <a href="https://web.engr.oregonstate.edu/~lif/" class="landing-link">Fuxin Li</a> at Oregon State University</p>
-        <p> I'm interested in variational inference, generative models, adversarial defenses, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about uncertainty, alignment, and paperclips. </p>
+<p>I’m currently a PhD candidate under Dr. <a href="https://web.engr.oregonstate.edu/~lif/" class="landing-link">Fuxin Li</a> at Oregon State University&lt;/p&gt;
+I’m broadly interested in variational inference, generative models, adversarial defenses, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about uncertainty, alignment, and paperclips.</p>
+
+<p>I’ve worked at Horizon Robotics, <a href="https://vimeo.com/170280447">Intel</a>, and <a href="https://www.tek.com/">Tektronix</a></p>
+
+<h1 id="papers">Papers</h1>
+
+<h3 id="hypergan-a-generative-model-for-diverse-performant-neural-networks-ratzlaff-fuxin-icml-2019"><a href="http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf">HyperGAN: A Generative Model for Diverse Performant Neural Networks.</a> <strong>Ratzlaff</strong>, Fuxin (ICML 2019)</h3>
+
+<p>Code: <a href="https://github.com/neale/HyperGAN">HyperGAN Github repo</a></p>
+
+<p>We learn an implicit ensemble using a neural generating network. Trained by maximum likelihood, the generator learns to sample from the posterior of model parameters which fit the data. 
+The generated model parameters achieve high accuracy, yet are distinct with different predictive distributions. 
+We enforce diversity by regularizing the intermediate representations to be well-distributed, while not harming the flexibility of the output distribution.</p>
+<div style="text-align:center"><img src="/hypergan.png" /></div>
+
+<hr />
+
+<h3 id="unifying-bilateral-filtering-and-adversarial-training-for-robust-neural-networks-ratzlaff-fuxin-arxiv-preprint-2018"><a href="https://arxiv.org/abs/1804.01635">Unifying Bilateral Filtering and Adversarial Training for Robust Neural Networks.</a> <strong>Ratzlaff</strong>, Fuxin (<em>arxiv</em> preprint) 2018</h3>
+
+<p>Code: <a href="https://github.com/neale/adversarial-toolbox">Github repo</a></p>
+
+<p>We use an adaptive bilateral filter to smooth the purturbations left by adversarial attacks. We view our method as a piecewise projection of the high frequency perturbations, back to the natural image manifold. Our method is simple, effective, and practical, unlike many other projection defenses</p>
+
+<p><img src="/BFNet.png" alt="BFNet" /></p>
+
+<hr />
+
+<h1 id="theses">Theses</h1>
+
+<h3 id="methods-for-detection-and-recovery-of-out-of-distribution-examples-ms-degree-computer-science-oregon-state-university-2018"><a href="https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/mw22vb88d">Methods for Detection and Recovery of Out-of-Distribution Examples.</a> M.S. Degree Computer Science. Oregon State University (2018)</h3>
+
+<div style="text-align:center"><img src="/class.png" /> <a /> <img src="/density.png" /> </div>
+
+<hr />
+
+<h1 id="code">Code</h1>
+
+<p>I maintain and work on various other projects, all deep learning related. Pretty mnuch all of them are in PyTorch.</p>
+
+<ul>
+  <li><a href="github.com/neale/adversarial-autoencoders">Adversarial Autoencoders</a></li>
+  <li><a href="github.com/neale/Improved-WGAN">Improved Wasserstein GAN</a></li>
+  <li><a href="github.com/neale/CPPN">Compositional Pattern Producing Networks</a></li>
+</ul>
+
+<hr />
+
+<dl>
+<dt>Name</dt>
+<dd>Godzilla</dd>
+<dt>Born</dt>
+<dd>1952</dd>
+<dt>Birthplace</dt>
+<dd>Japan</dd>
+<dt>Color</dt>
+<dd>Green</dd>
+</dl>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Long, single-line code blocks should not wrap. They should horizontally scroll if they are too long. This line should be long enough to demonstrate this.
+</code></pre></div></div>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>The final element.
+</code></pre></div></div>
+
+
+      <footer class="site-footer">
         
-        <p> I've worked at <a href="https://vimeo.com/170280447" class="landing-link">Intel</a> and <a href="https://www.tek.com/" class="landing-link">Tektronix</a> </p>
-      </div>
-    </div>
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a>.</span>
+      </footer>
+    </main>
   </body>
 </html>
