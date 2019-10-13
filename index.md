@@ -48,11 +48,11 @@ We use an adaptive bilateral filter to smooth the purturbations left by adversar
 
 # Code
 
-I maintain and work on various other projects, all deep learning related. Pretty mnuch all of them are in PyTorch. 
+I maintain and work on various other projects, all deep learning related. Pretty much all of them are in PyTorch. 
 
-* [Adversarial Autoencoders](github.com/neale/adversarial-autoencoder)
-* [Improved Wasserstein GAN](github.com/neale/Improved-WGAN)
-* [Compositional Pattern Producing Networks](github.com/neale/CPPN)
+* [Adversarial Autoencoders](https://github.com/neale/adversarial-autoencoder)
+* [Improved Wasserstein GAN](https://github.com/neale/Improved-WGAN)
+* [Compositional Pattern Producing Networks](https://github.com/neale/CPPN)
 
 ---------
 
