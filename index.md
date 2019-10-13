@@ -5,7 +5,7 @@ layout: default
 I'm Neale Ratzlaff, &#x1F332; &#x1F332; a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning
 
 I'm a PhD candidate studying with Dr. [Fuxin Li](https://web.engr.oregonstate.edu/~lif/) at Oregon State University.
-I'm broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. Broadly, I want to create AI agents which we can trust. This means I spend a lot of time thinking about alignment, and paperclips.
+I'm broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It's important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.
 
 Currently I'm interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles. 
         
