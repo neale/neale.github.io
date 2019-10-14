@@ -21,7 +21,7 @@ Code: [HyperGAN Github repo](https://github.com/neale/HyperGAN)
 We learn an implicit ensemble using a neural generating network. Trained by maximum likelihood, the generator learns to sample from the posterior of model parameters which fit the data. 
 The generated model parameters achieve high accuracy, yet are distinct with different predictive distributions. 
 We enforce diversity by regularizing the intermediate representations to be well-distributed, while not harming the flexibility of the output distribution.  
-<div style="text-align:center"><img src="/hypergan.png" /></div>
+<div style="text-align:center"><img src="/images/hypergan.png" /></div>
 
 ---------
 
@@ -31,7 +31,7 @@ Code: [Github repo](https://github.com/neale/adversarial-toolbox)
 
 We use an adaptive bilateral filter to smooth the purturbations left by adversarial attacks. We view our method as a piecewise projection of the high frequency perturbations, back to the natural image manifold. Our method is simple, effective, and practical, unlike many other projection defenses
 
-![BFNet](/BFNet.png)
+![BFNet](/images/BFNet.png)
 
 ---------
 
@@ -40,7 +40,7 @@ We use an adaptive bilateral filter to smooth the purturbations left by adversar
 
 ### [Methods for Detection and Recovery of Out-of-Distribution Examples.](https://ir.library.oregonstate.edu/concern/graduate_thesis_or_dissertations/mw22vb88d) M.S. Degree Computer Science. Oregon State University (2018)
 
-<div style="text-align:center"><img src="/class.png" /> <img src="/density.png"/> </div>
+<div style="text-align:center"><img src="/images/class.png" /> <img src="/images/density.png"/> </div>
 
 ---------
 
@@ -49,9 +49,11 @@ We use an adaptive bilateral filter to smooth the purturbations left by adversar
 I maintain and work on various other projects, all deep learning related. Pretty much all of them are in PyTorch. 
 
 * [Adversarial Autoencoders](https://github.com/neale/adversarial-autoencoder)
-* [Improved Wasserstein GAN](https://github.com/neale/Improved-WGAN)
+* [Improved Wassersteion GAN](https://github.com/neale/Improved-WGAN)
 * [Compositional Pattern Producing Networks](https://github.com/neale/CPPN)
-
 ---------
 
+# Generative Art
+
+Inspired by [Hardmaru](http://blog.otoro.net/), I build evolutionary creative machines. There is gallery of examples [here](./gen_art.html)
 

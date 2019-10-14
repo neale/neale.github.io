@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "syntax.css",
+	"sources": [
+		"syntax.scss"
+	],
+	"sourcesContent": [
+		"// syntax \n//@import\n//        \"syntax\",\n//        \"syntax-helper\";\n"
+	],
+	"names": [],
+	"mappings": ""
+}
