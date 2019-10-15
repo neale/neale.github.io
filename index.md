@@ -9,7 +9,7 @@ I'm broadly interested in implicit variational inference, generative models, unc
 
 Currently I'm interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles. 
         
-I've worked at Horizon Robotics, [Intel](https://vimeo.com/170280447), and [Tektronix](https://www.tek.com/)
+I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.com/170280447), and [Tektronix](https://www.tek.com/)
 
 
 # Papers
@@ -51,6 +51,7 @@ I maintain and work on various other projects, all deep learning related. Pretty
 * [Adversarial Autoencoders](https://github.com/neale/adversarial-autoencoder)
 * [Improved Wassersteion GAN](https://github.com/neale/Improved-WGAN)
 * [Compositional Pattern Producing Networks](https://github.com/neale/CPPN)
+
 ---------
 
 # Generative Art
