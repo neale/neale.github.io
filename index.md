@@ -18,6 +18,8 @@ I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.co
 
 Code: [HyperGAN Github repo](https://github.com/neale/HyperGAN)
 
+Talk: ICML Oral [Slideshare](https://slideslive.com/38917398/general-ml)
+
 We learn an implicit ensemble using a neural generating network. Trained by maximum likelihood, the generator learns to sample from the posterior of model parameters which fit the data. 
 The generated model parameters achieve high accuracy, yet are distinct with different predictive distributions. 
 We enforce diversity by regularizing the intermediate representations to be well-distributed, while not harming the flexibility of the output distribution.  
