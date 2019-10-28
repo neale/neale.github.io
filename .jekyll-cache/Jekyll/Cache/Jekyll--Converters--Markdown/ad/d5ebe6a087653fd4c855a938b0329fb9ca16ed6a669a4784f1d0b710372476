@@ -1,4 +1,4 @@
-I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
+I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
 
 <p>I’m a PhD candidate studying with Dr. <a href="https://web.engr.oregonstate.edu/~lif/">Fuxin Li</a> at Oregon State University.
 I’m broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
@@ -6,12 +6,15 @@ I’m broadly interested in implicit variational inference, generative models, u
 <p>Currently I’m interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles.</p>
 
 <p>I’ve worked at <a href="https://horizon.ai/">Horizon Robotics</a>, <a href="https://vimeo.com/170280447">Intel</a>, and <a href="https://www.tek.com/">Tektronix</a></p>
+<div style="text-align:center"><img src="/images/horizon_logo.png" /> <img src="/images/intel_logo.png" /> <img src="/images/tek_logo.png" /> </div>
 
 <h1 id="papers">Papers</h1>
 
 <h3 id="hypergan-a-generative-model-for-diverse-performant-neural-networks-ratzlaff-fuxin-icml-2019"><a href="http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf">HyperGAN: A Generative Model for Diverse Performant Neural Networks.</a> <strong>Ratzlaff</strong>, Fuxin (ICML 2019)</h3>
 
 <p>Code: <a href="https://github.com/neale/HyperGAN">HyperGAN Github repo</a></p>
+
+<p>Talk: ICML Oral <a href="https://slideslive.com/38917398/general-ml">Slideshare</a></p>
 
 <p>We learn an implicit ensemble using a neural generating network. Trained by maximum likelihood, the generator learns to sample from the posterior of model parameters which fit the data. 
 The generated model parameters achieve high accuracy, yet are distinct with different predictive distributions. 
