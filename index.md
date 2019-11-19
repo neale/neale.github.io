@@ -15,7 +15,19 @@ I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.co
 
 # Papers
 
-### [HyperGAN: A Generative Model for Diverse Performant Neural Networks.](http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf) **Ratzlaff**, Fuxin (ICML 2019)
+### [Implicit Generative Modeling for Efficient Exploration.]('./')
+
+ **Ratzlaff**, Bai, Fuxin, Xu (_arxiv_ preprint) 2019
+
+We model uncertainty estimation as an intrinsic reward for efficient exploration. We introduce an implicit generative modeling approach to estimate a Bayesian uncertainty of the agent’s belief of theenvironment dynamics.  We approximate the posterior through multiple draws from our generative model. The variance of the dynamic models' output is used as an intrinsic reward for exploration. We design a training algorithm for our generative model based on amortized Stein Variational Gradient Descent, to ensure the parameter distribution is a nontrivial approximation to the true posterior. 
+
+<div style="text-align:center"><img src="/images/RLpaper_hypergan.png" /></div>
+
+-------------
+
+### [HyperGAN: A Generative Model for Diverse Performant Neural Networks.](http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf)
+
+ **Ratzlaff**, Fuxin (ICML 2019)
 
 Code: [HyperGAN Github repo](https://github.com/neale/HyperGAN)
 
@@ -28,7 +40,9 @@ We enforce diversity by regularizing the intermediate representations to be well
 
 ---------
 
-### [Unifying Bilateral Filtering and Adversarial Training for Robust Neural Networks.](https://arxiv.org/abs/1804.01635) **Ratzlaff**, Fuxin (_arxiv_ preprint) 2018
+### [Unifying Bilateral Filtering and Adversarial Training for Robust Neural Networks.](https://arxiv.org/abs/1804.01635)
+
+ **Ratzlaff**, Fuxin (_arxiv_ preprint) 2018
 
 Code: [Github repo](https://github.com/neale/adversarial-toolbox)
 
