@@ -15,7 +15,7 @@ I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.co
 
 # Papers
 
-### [Implicit Generative Modeling for Efficient Exploration.]('./')
+### [Implicit Generative Modeling for Efficient Exploration.](https://arxiv.org/abs/1911.08017)
 
  **Ratzlaff**, Bai, Fuxin, Xu (_arxiv_ preprint) 2019
 
