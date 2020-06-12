@@ -15,9 +15,22 @@ I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.co
 
 # Papers
 
+### [Avoiding Side-Effects in Complex Environments.](https://128.84.21.199/abs/2006.06547)
+
+ Turner<sup>☨</sup>, **Ratzlaff**<sup>☨</sup>, Tadepalli, Under Review (2020)
+
+(☨): Equal Contribution
+
+We introduce reinforcement learning agents that can accomplish goals without incurring side effects. Standard RL agents collect reward at any cost, often unsustainably ruining the environment around them. The attainable utility penalty (AUP) penalizes agents for acting in a way that decreases in their ability to achieve unknown future goals. We extend AUP to the deep RL case, and show that our AUP agents can act in difficult environments with stochastic dynamics, without incurring side effects. 
+
+<div style="text-align:center"><img src="/images/aup_paper.png" /></div>
+
+-------------
+
+
 ### [Implicit Generative Modeling for Efficient Exploration.](https://arxiv.org/abs/1911.08017)
 
- **Ratzlaff**, Bai, Fuxin, Xu (_arxiv_ preprint) 2019
+ **Ratzlaff**, Bai, Fuxin, Xu (ICML) 2020
 
 We model uncertainty estimation as an intrinsic reward for efficient exploration. We introduce an implicit generative modeling approach to estimate a Bayesian uncertainty of the agent’s belief of theenvironment dynamics.  We approximate the posterior through multiple draws from our generative model. The variance of the dynamic models' output is used as an intrinsic reward for exploration. We design a training algorithm for our generative model based on amortized Stein Variational Gradient Descent, to ensure the parameter distribution is a nontrivial approximation to the true posterior. 
 
@@ -68,6 +81,7 @@ I maintain and work on various other projects, all deep learning related. Pretty
 * [Adversarial Autoencoders](https://github.com/neale/adversarial-autoencoder)
 * [Improved Wassersteion GAN](https://github.com/neale/Improved-WGAN)
 * [Compositional Pattern Producing Networks](https://github.com/neale/CPPN)
+* [Satisfiable Neural Networks (PySMT-DNN)](https://github.com/neale/PySMTDNN)
 
 ---------
 

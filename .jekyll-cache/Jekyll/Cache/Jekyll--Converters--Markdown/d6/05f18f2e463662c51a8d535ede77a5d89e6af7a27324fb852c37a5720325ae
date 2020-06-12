@@ -1,4 +1,4 @@
-I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
+I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
 
 <p>I’m a PhD candidate studying with Dr. <a href="https://web.engr.oregonstate.edu/~lif/">Fuxin Li</a> at Oregon State University.
 I’m broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
@@ -6,11 +6,35 @@ I’m broadly interested in implicit variational inference, generative models, u
 <p>Currently I’m interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles.</p>
 
 <p>I’ve worked at <a href="https://horizon.ai/">Horizon Robotics</a>, <a href="https://vimeo.com/170280447">Intel</a>, and <a href="https://www.tek.com/">Tektronix</a></p>
-<div style="text-align:center"><img src="/images/horizon_logo.jpeg" /> <img src="/images/intel_logo.png" /> <img src="/images/tek_logo.jpeg" /> </div>
+<div style="text-align:center"><img src="/images/horizon_logo.png" /> <img src="/images/intel_logo.png" /> <img src="/images/tek_logo.png" /> </div>
 
 <h1 id="papers">Papers</h1>
 
-<h3 id="hypergan-a-generative-model-for-diverse-performant-neural-networks-ratzlaff-fuxin-icml-2019"><a href="http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf">HyperGAN: A Generative Model for Diverse Performant Neural Networks.</a> <strong>Ratzlaff</strong>, Fuxin (ICML 2019)</h3>
+<h3 id="avoiding-side-effects-in-complex-environments"><a href="https://128.84.21.199/abs/2006.06547">Avoiding Side-Effects in Complex Environments.</a></h3>
+
+<p>Turner ☨, <strong>Ratzlaff</strong> ☨, Tadepalli, Under Review (2020)</p>
+
+<p>(☨): Equal Contribution</p>
+
+<p>We introduce reinforcement learning agents that can accomplish goals without incurring side effects. Standard RL agents collect reward at any cost, often unsustainably ruining the environment around them. The attainable utility penalty (AUP) penalizes agents for acting in a way that decreases in their ability to achieve unknown future goals. We extend AUP to the deep RL case, and show that our AUP agents can act in difficult environments with stochastic dynamics, without incurring side effects.</p>
+
+<div style="text-align:center"><img src="/images/aup_paper.png" /></div>
+
+<hr />
+
+<h3 id="implicit-generative-modeling-for-efficient-exploration"><a href="https://arxiv.org/abs/1911.08017">Implicit Generative Modeling for Efficient Exploration.</a></h3>
+
+<p><strong>Ratzlaff</strong>, Bai, Fuxin, Xu (ICML) 2020</p>
+
+<p>We model uncertainty estimation as an intrinsic reward for efficient exploration. We introduce an implicit generative modeling approach to estimate a Bayesian uncertainty of the agent’s belief of theenvironment dynamics.  We approximate the posterior through multiple draws from our generative model. The variance of the dynamic models’ output is used as an intrinsic reward for exploration. We design a training algorithm for our generative model based on amortized Stein Variational Gradient Descent, to ensure the parameter distribution is a nontrivial approximation to the true posterior.</p>
+
+<div style="text-align:center"><img src="/images/RLpaper_hypergan.png" /></div>
+
+<hr />
+
+<h3 id="hypergan-a-generative-model-for-diverse-performant-neural-networks"><a href="http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf">HyperGAN: A Generative Model for Diverse Performant Neural Networks.</a></h3>
+
+<p><strong>Ratzlaff</strong>, Fuxin (ICML 2019)</p>
 
 <p>Code: <a href="https://github.com/neale/HyperGAN">HyperGAN Github repo</a></p>
 
@@ -23,7 +47,9 @@ We enforce diversity by regularizing the intermediate representations to be well
 
 <hr />
 
-<h3 id="unifying-bilateral-filtering-and-adversarial-training-for-robust-neural-networks-ratzlaff-fuxin-arxiv-preprint-2018"><a href="https://arxiv.org/abs/1804.01635">Unifying Bilateral Filtering and Adversarial Training for Robust Neural Networks.</a> <strong>Ratzlaff</strong>, Fuxin (<em>arxiv</em> preprint) 2018</h3>
+<h3 id="unifying-bilateral-filtering-and-adversarial-training-for-robust-neural-networks"><a href="https://arxiv.org/abs/1804.01635">Unifying Bilateral Filtering and Adversarial Training for Robust Neural Networks.</a></h3>
+
+<p><strong>Ratzlaff</strong>, Fuxin (<em>arxiv</em> preprint) 2018</p>
 
 <p>Code: <a href="https://github.com/neale/adversarial-toolbox">Github repo</a></p>
 

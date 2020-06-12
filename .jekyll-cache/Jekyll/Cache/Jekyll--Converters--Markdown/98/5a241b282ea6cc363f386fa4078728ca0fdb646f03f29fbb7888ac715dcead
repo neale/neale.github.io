@@ -1,4 +1,4 @@
-I"4<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
+I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
 
 <p>I’m a PhD candidate studying with Dr. <a href="https://web.engr.oregonstate.edu/~lif/">Fuxin Li</a> at Oregon State University.
 I’m broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
@@ -10,9 +10,19 @@ I’m broadly interested in implicit variational inference, generative models, u
 
 <h1 id="papers">Papers</h1>
 
-<h3 id="implicit-generative-modeling-for-efficient-exploration"><a href="'./'">Implicit Generative Modeling for Efficient Exploration.</a></h3>
+<h3 id="avoiding-side-effects-in-complex-environments"><a href="https://128.84.21.199/abs/2006.06547">Avoiding Side-Effects in Complex Environments.</a></h3>
 
-<p><strong>Ratzlaff</strong>, Bai, Fuxin, Xu (<em>arxiv</em> preprint) 2019</p>
+<p>Turner ☨, <strong>Ratzlaff</strong> ☨, Tadepalli, Under Review (2020)</p>
+
+<p>(☨): Equal Contribution</p>
+
+<p>We introduce reinforcement learning agents that can accomplish goals without incurring side effects. Standard RL agents collect reward at any cost, often unsustainably ruining the environment around them. The attainable utility penalty (AUP) penalizes agents for acting in a way that decreases in their ability to achieve unknown future goals. We extend AUP to the deep RL case, and show that our AUP agents can act in difficult environments with stochastic dynamics, without incurring side effects.</p>
+
+<div style="text-align:center"><img src="/images/aup_paper.png" /></div>
+
+<h3 id="implicit-generative-modeling-for-efficient-exploration"><a href="https://arxiv.org/abs/1911.08017">Implicit Generative Modeling for Efficient Exploration.</a></h3>
+
+<p><strong>Ratzlaff</strong>, Bai, Fuxin, Xu (ICML) 2020</p>
 
 <p>We model uncertainty estimation as an intrinsic reward for efficient exploration. We introduce an implicit generative modeling approach to estimate a Bayesian uncertainty of the agent’s belief of theenvironment dynamics.  We approximate the posterior through multiple draws from our generative model. The variance of the dynamic models’ output is used as an intrinsic reward for exploration. We design a training algorithm for our generative model based on amortized Stein Variational Gradient Descent, to ensure the parameter distribution is a nontrivial approximation to the true posterior.</p>
 
