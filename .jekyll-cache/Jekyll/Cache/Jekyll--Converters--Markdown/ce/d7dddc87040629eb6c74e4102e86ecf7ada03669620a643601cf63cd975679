@@ -1,4 +1,4 @@
-I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
+I"0<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
 
 <p>I’m a PhD candidate studying with Dr. <a href="https://web.engr.oregonstate.edu/~lif/">Fuxin Li</a> at Oregon State University.
 I’m broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
@@ -12,7 +12,7 @@ I’m broadly interested in implicit variational inference, generative models, u
 
 <h3 id="avoiding-side-effects-in-complex-environments"><a href="https://128.84.21.199/abs/2006.06547">Avoiding Side-Effects in Complex Environments.</a></h3>
 
-<p>Turner<sup>☨</sup>, <strong>Ratzlaff</strong><sup>☨</sup>, Tadepalli, Under Review (2020)</p>
+<p>Turner<sup>☨</sup>, <strong>Ratzlaff</strong><sup>☨</sup>, Tadepalli, NeurIPS (2020) <strong>Spotlight talk</strong></p>
 
 <p>(☨): Equal Contribution</p>
 
@@ -75,6 +75,7 @@ We enforce diversity by regularizing the intermediate representations to be well
   <li><a href="https://github.com/neale/adversarial-autoencoder">Adversarial Autoencoders</a></li>
   <li><a href="https://github.com/neale/Improved-WGAN">Improved Wassersteion GAN</a></li>
   <li><a href="https://github.com/neale/CPPN">Compositional Pattern Producing Networks</a></li>
+  <li><a href="https://github.com/neale/PySMTDNN">Satisfiable Neural Networks (PySMT-DNN)</a></li>
 </ul>
 
 <hr />

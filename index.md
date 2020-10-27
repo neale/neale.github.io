@@ -17,7 +17,7 @@ I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.co
 
 ### [Avoiding Side-Effects in Complex Environments.](https://128.84.21.199/abs/2006.06547)
 
- Turner<sup>☨</sup>, **Ratzlaff**<sup>☨</sup>, Tadepalli, Under Review (2020)
+ Turner<sup>☨</sup>, **Ratzlaff**<sup>☨</sup>, Tadepalli, NeurIPS (2020) **Spotlight talk**
 
 (☨): Equal Contribution
 
