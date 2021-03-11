@@ -31,7 +31,7 @@ We introduce a new method for Bayesian deep learning: GPVI, that fuses the flexi
 ---------------
 
 
-### [Avoiding Side-Effects in Complex Environments.](https://128.84.21.199/abs/2006.06547)
+### [Avoiding Side-Effects in Complex Environments.](https://arxiv.org/abs/2006.06547)
 
  Turner<sup>☨</sup>, **Ratzlaff**<sup>☨</sup>, Tadepalli. (**NeurIPS**) 2020, **Spotlight talk**
 
