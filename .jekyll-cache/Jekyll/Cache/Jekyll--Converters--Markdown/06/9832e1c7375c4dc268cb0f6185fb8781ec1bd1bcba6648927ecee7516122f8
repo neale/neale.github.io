@@ -1,18 +1,32 @@
-I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, currently interning at Horizon Robotics, working on exploration in deep reinforcement learning</p>
+I"�<p>I’m Neale Ratzlaff, 🌲 🌲 a Deep Learning and Computer Vision researcher, working on Bayesian deep learning, with applications to computer vision and deep reinforcement learning</p>
 
 <p>I’m a PhD candidate studying with Dr. <a href="https://web.engr.oregonstate.edu/~lif/">Fuxin Li</a> at Oregon State University.
-I’m broadly interested in implicit variational inference, generative models, uncertainty, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
+I’m broadly interested in implicit variational inference, generative models, uncertainty quantification, and information geometry. It’s important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.</p>
 
-<p>Currently I’m interested in learning distributions over functions, and using them to improve methods in computer vision and reinforcement learning. By leveraging some recent advances in particle vairational inference, we can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles.</p>
+<p>Currently I’m interested in leveraging particle-based variational inference to create better Bayesian neural networks. We can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles.</p>
 
 <p>I’ve worked at <a href="https://horizon.ai/">Horizon Robotics</a>, <a href="https://vimeo.com/170280447">Intel</a>, and <a href="https://www.tek.com/">Tektronix</a></p>
 <div style="text-align:center"><img src="/images/horizon_logo.png" /> <img src="/images/intel_logo.png" /> <img src="/images/tek_logo.png" /> </div>
 
 <h1 id="papers">Papers</h1>
 
-<h3 id="avoiding-side-effects-in-complex-environments"><a href="https://128.84.21.199/abs/2006.06547">Avoiding Side-Effects in Complex Environments.</a></h3>
+<h3 id="generative-particle-variational-inference-via-estimation-of-functional-gradients"><a href="https://arxiv.org/abs/2103.01291">Generative Particle Variational Inference via Estimation of Functional Gradients</a></h3>
 
-<p>Turner<sup>☨</sup>, <strong>Ratzlaff</strong><sup>☨</sup>, Tadepalli. (NeurIPS) 2020, <strong>Spotlight talk</strong></p>
+<p><strong>Ratzlaff</strong><sup>☨</sup>, Bai<sup>☨</sup>, Fuxin, Xu. (Under Review) 2021,</p>
+
+<p>(☨): Equal Contribution</p>
+
+<p>Code: coming very soon</p>
+
+<p>We introduce a new method for Bayesian deep learning: GPVI, that fuses the flexibility of particle-based variational methods, with the efficiency of generative samplers. We construct a neural sampler that is trained with the functional gradient of the KL-divergence between the empirical sampling distribution and the target distribution. We show that GPVI accurately models the posterior distribution when applied to density estimation and Bayesian neural networks. This work also features a new method for estimating the inverse of the input-output jacobian without invertibility restrictions.</p>
+
+<div style="text-align:center"><img src="/images/2class-sin.png" /></div>
+
+<hr />
+
+<h3 id="avoiding-side-effects-in-complex-environments"><a href="https://arxiv.org/abs/2006.06547">Avoiding Side-Effects in Complex Environments.</a></h3>
+
+<p>Turner<sup>☨</sup>, <strong>Ratzlaff</strong><sup>☨</sup>, Tadepalli. (<strong>NeurIPS</strong>) 2020, <strong>Spotlight talk</strong></p>
 
 <p>(☨): Equal Contribution</p>
 
@@ -26,7 +40,7 @@ I’m broadly interested in implicit variational inference, generative models, u
 
 <h3 id="implicit-generative-modeling-for-efficient-exploration"><a href="https://arxiv.org/abs/1911.08017">Implicit Generative Modeling for Efficient Exploration.</a></h3>
 
-<p><strong>Ratzlaff</strong>, Bai, Fuxin, Xu. (ICML) 2020</p>
+<p><strong>Ratzlaff</strong>, Bai, Fuxin, Xu. (<strong>ICML</strong>) 2020</p>
 
 <p>We model uncertainty estimation as an intrinsic reward for efficient exploration. We introduce an implicit generative modeling approach to estimate a Bayesian uncertainty of the agent’s belief of theenvironment dynamics.  We approximate the posterior through multiple draws from our generative model. The variance of the dynamic models’ output is used as an intrinsic reward for exploration. We design a training algorithm for our generative model based on amortized Stein Variational Gradient Descent, to ensure the parameter distribution is a nontrivial approximation to the true posterior.</p>
 
@@ -36,7 +50,7 @@ I’m broadly interested in implicit variational inference, generative models, u
 
 <h3 id="hypergan-a-generative-model-for-diverse-performant-neural-networks"><a href="http://proceedings.mlr.press/v97/ratzlaff19a/ratzlaff19a.pdf">HyperGAN: A Generative Model for Diverse Performant Neural Networks.</a></h3>
 
-<p><strong>Ratzlaff</strong>, Fuxin. (ICML) 2019</p>
+<p><strong>Ratzlaff</strong>, Fuxin. (<strong>ICML</strong>) 2019</p>
 
 <p>Code: <a href="https://github.com/neale/HyperGAN">HyperGAN Github repo</a></p>
 
@@ -45,6 +59,7 @@ I’m broadly interested in implicit variational inference, generative models, u
 <p>We learn an implicit ensemble using a neural generating network. Trained by maximum likelihood, the generator learns to sample from the posterior of model parameters which fit the data. 
 The generated model parameters achieve high accuracy, yet are distinct with different predictive distributions. 
 We enforce diversity by regularizing the intermediate representations to be well-distributed, while not harming the flexibility of the output distribution.</p>
+
 <div style="text-align:center"><img src="/images/hypergan.png" /></div>
 
 <hr />
@@ -75,7 +90,7 @@ We enforce diversity by regularizing the intermediate representations to be well
 
 <ul>
   <li><a href="https://github.com/neale/adversarial-autoencoder">Adversarial Autoencoders</a></li>
-  <li><a href="https://github.com/neale/Improved-WGAN">Improved Wassersteion GAN</a></li>
+  <li><a href="https://github.com/neale/Improved-WGAN">Improved Wasserstein GAN</a></li>
   <li><a href="https://github.com/neale/CPPN">Compositional Pattern Producing Networks</a></li>
   <li><a href="https://github.com/neale/PySMTDNN">Satisfiable Neural Networks (PySMT-DNN)</a></li>
 </ul>
