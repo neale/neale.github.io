@@ -4,25 +4,45 @@ layout: default
 
 I'm Neale Ratzlaff, &#x1F332; &#x1F332; a Deep Learning and Computer Vision researcher, working on Bayesian deep learning, with applications to computer vision and deep reinforcement learning
 
-I'm a PhD candidate studying with Dr. [Fuxin Li](https://web.engr.oregonstate.edu/~lif/) at Oregon State University.
-I'm broadly interested in implicit variational inference, generative models, uncertainty quantification, and information geometry. It's important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.
+I did my PhD under Dr. [Fuxin Li](https://web.engr.oregonstate.edu/~lif/) at Oregon State University.
+I'm broadly interested in variational inference with implicit distributions, generative models, uncertainty quantification, and information geometry. It's important to create AI agents which we can trust, meaning I spend a lot of time thinking about alignment and paperclips.
 
 Currently I'm interested in leveraging particle-based variational inference to create better Bayesian neural networks. We can learn these intractable distributions even for complex neural networks. The resulting distributions have numerous benefits over single models, and even bootstrapped ensembles. 
         
 I've worked at [Horizon Robotics](https://horizon.ai/), [Intel](https://vimeo.com/170280447), and [Tektronix](https://www.tek.com/)
 <div style="text-align:center"><img src="/images/horizon_logo.png" /> <img src="/images/intel_logo.png"/> <img src="/images/tek_logo.png"/> </div>
 
+# News
+
+* I successfully defended my dissertation on uncertainty quantification in deep learning with implicit distributions over neural networks
+
+* I accepted a research scientist position at HRL Laboratories in Malibu, CA. 
+
 
 # Papers
 
-### [Generative Particle Variational Inference via Estimation of Functional Gradients](https://arxiv.org/abs/2103.01291)
+### [Contrastive Identification of Covariate Shift in Image Data](https://arxiv.org/abs/2108.08000)
 
- **Ratzlaff**<sup>☨</sup>, Bai<sup>☨</sup>, Fuxin, Xu. (Under Review) 2021, 
+ Matthew L. Olson, Thuy-Vy Nguyen, Gaurav Dixit, **Neale Ratzlaff**, Weng-Keen Wong, Minsuk Kahng (IEEE VIS) 2021,
+ 
+We design and evaluate a new visual interface that facilitates the comparison of the local distributions of training and test data. We conduct a quantitative user study on multi-attribute facial data to compare the learned latent representations of ImageNet CNNs vs. density ratio models, with two user analytic workflows.
+
+
+<div style="text-align:center"><img src="/images/vis_pic.png" /></div>
+
+-----------------
+
+
+### [Generative Particle Variational Inference via Estimation of Functional Gradients](https://proceedings.mlr.press/v139/ratzlaff21a.html)
+
+ **Ratzlaff**<sup>☨</sup>, Bai<sup>☨</sup>, Fuxin, Xu. (ICML) 2021, 
 
 (☨): Equal Contribution
 
 Code: coming very soon
 
+Slides and Talk: [ICML landing page](https://icml.cc/virtual/2021/poster/9249)
+ 
 We introduce a new method for Bayesian deep learning: GPVI, that fuses the flexibility of particle-based variational methods, with the efficiency of generative samplers. We construct a neural sampler that is trained with the functional gradient of the KL-divergence between the empirical sampling distribution and the target distribution. We show that GPVI accurately models the posterior distribution when applied to density estimation and Bayesian neural networks. This work also features a new method for estimating the inverse of the input-output jacobian without invertibility restrictions. 
 
 
